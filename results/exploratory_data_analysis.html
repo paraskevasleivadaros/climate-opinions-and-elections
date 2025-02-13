@@ -7517,6 +7517,293 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Data-Preparation">Data Preparation<a class="anchor-link" href="#Data-Preparation">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Check-for-duplicate-PIDs-in-the-dataset">Check for duplicate PIDs in the dataset<a class="anchor-link" href="#Check-for-duplicate-PIDs-in-the-dataset">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Load the CSV file</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/w1w2w3w4w5_indices_weights_jul12_2022.csv'</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Check for duplicate PIDs</span>
+<span class="n">duplicate_pids</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="s1">'PID'</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">duplicate_pids</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"There are duplicate PIDs in the dataset."</span><span class="p">)</span>
+    <span class="n">duplicate_pids</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'../data/duplicate_pids.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Duplicate PIDs have been saved to '../data/duplicate_pids.csv'."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"All PIDs are unique."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>There are duplicate PIDs in the dataset.
+Duplicate PIDs have been saved to '../data/duplicate_pids.csv'.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>⬆️ here we filter the participants who participated in more than one wave and we group the responses by the PID</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h4 id="Filter-Wave-Survey-Data">Filter Wave Survey Data<a class="anchor-link" href="#Filter-Wave-Survey-Data">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load the CSV file</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"../data/duplicate_pids.csv"</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Identify valid sequences (rolling window approach)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'valid_seq'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'WAVE'</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Flag rows belonging to valid sequences</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'keep'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'valid_seq'</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span> <span class="o">|</span> <span class="n">df</span><span class="p">[</span><span class="s1">'valid_seq'</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span> <span class="o">|</span> <span class="n">df</span><span class="p">[</span><span class="s1">'valid_seq'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+
+<span class="c1"># Filter the rows</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'keep'</span><span class="p">]]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'valid_seq'</span><span class="p">,</span> <span class="s1">'keep'</span><span class="p">])</span>
+
+<span class="c1"># Save to a new CSV file</span>
+<span class="n">filtered_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../data/filtered_duplicate_pids.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Filtered data saved to filtered_duplicate_pids.csv"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Filtered data saved to filtered_duplicate_pids.csv
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>⬆️ here we filter the participants who responded in waves 2 and 3 and 4 (in this order)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h4 id="Likert-Scale-Standardization">Likert Scale Standardization<a class="anchor-link" href="#Likert-Scale-Standardization">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load the CSV file from the data directory</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/filtered_duplicate_pids.csv'</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Some variables use a five-point Likert scale (1 to 5), while others use a four-point scale (1 to 4)</span>
+<span class="c1"># Since some scales are missing a neutral category (like 3), we need to standardize them</span>
+<span class="c1"># We chose to rescale the 1-4 scale to match the 1-5 scale by applying a linear transformation:</span>
+<span class="c1"># 1 (Not at all)         → 1</span>
+<span class="c1"># 2 (Only a little)      → 2.33</span>
+<span class="c1"># 3 (A moderate amount)  → 3.67</span>
+<span class="c1"># 4 (A great deal)       → 5</span>
+<span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">2.33</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">3.67</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+
+<span class="c1"># List of variables to be mapped</span>
+<span class="n">variables_to_map</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'cc4_world'</span><span class="p">,</span> <span class="s1">'cc4_wealthUS'</span><span class="p">,</span> <span class="s1">'cc4_poorUS'</span><span class="p">,</span> <span class="s1">'cc4_comm'</span><span class="p">,</span> <span class="s1">'cc4_famheal'</span><span class="p">,</span> <span class="s1">'cc4_famecon'</span><span class="p">]</span>
+
+<span class="c1"># Apply the mapping to the specified variables</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables_to_map</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>
+
+<span class="c1"># Save the cleaned data to a new CSV file</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'../data/likert_scale.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Data has been standardized and saved to 'data/likert_scale.csv'."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Data has been standardized and saved to 'data/likert_scale.csv'.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>⬆️ here we rescale the 1-4 scale of some variables to match the 1-5 scale</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h4 id="Fill-missing-values">Fill missing values<a class="anchor-link" href="#Fill-missing-values">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">skim</span>  <span class="c1"># Equivalent to skimr::skim() in R</span>
+
+<span class="c1"># Load the dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/likert_scale.csv'</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Define ccSolve columns in decreasing order of WTP</span>
+<span class="n">ccSolve_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"ccSolve100"</span><span class="p">,</span> <span class="s2">"ccSolve50"</span><span class="p">,</span> <span class="s2">"ccSolve10"</span><span class="p">,</span> <span class="s2">"ccSolve1"</span><span class="p">,</span> <span class="s2">"ccSolve0"</span><span class="p">]</span>
+<span class="n">cc_policy_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"cc_pol_tax"</span><span class="p">,</span> <span class="s2">"cc_pol_car"</span><span class="p">]</span>
+
+<span class="c1"># Step 1: Fill downward (Lower WTP should be at least as approved as higher WTP)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ccSolve_columns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>  
+    <span class="n">higher_col</span> <span class="o">=</span> <span class="n">ccSolve_columns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">lower_col</span> <span class="o">=</span> <span class="n">ccSolve_columns</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># If lower response is missing but higher response exists, fill with gradual increase</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">lower_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">lower_col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">higher_col</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.75</span><span class="p">)</span>
+
+<span class="c1"># Step 2: Fill upward (Higher WTP should be less approved than lower WTP)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ccSolve_columns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  
+    <span class="n">lower_col</span> <span class="o">=</span> <span class="n">ccSolve_columns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">higher_col</span> <span class="o">=</span> <span class="n">ccSolve_columns</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># If higher response is missing but lower response exists, fill with gradual decrease</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">higher_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">higher_col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">lower_col</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="c1"># Step 3: Handle respondents with all missing `ccSolve` responses</span>
+<span class="c1"># If all `ccSolve` values are missing for a respondent, fill with a neutral value (3)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">ccSolve_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">ccSolve_columns</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="k">else</span> <span class="n">row</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Step 4: Ensure values stay within 1-5</span>
+<span class="n">df</span><span class="p">[</span><span class="n">ccSolve_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">ccSolve_columns</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Step 5: Fill missing values for cc_pol_tax and cc_pol_car with 3 (Neutral)</span>
+<span class="k">for</span> <span class="n">cc_policy</span> <span class="ow">in</span> <span class="n">cc_policy_columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">cc_policy</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cc_policy</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Save the filled dataset</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../data/cleaned_data.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>⬆️ here we fill the missing values of some variables</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Data-Description">Data Description<a class="anchor-link" href="#Data-Description">¶</a></h2>
 </div>
 </div>
@@ -7567,15 +7854,10 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skimpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">skim</span>  <span class="c1"># Equivalent to skimr::skim() in R</span>
-
-<span class="c1"># Load your dataset (replace 'your_data.csv' with your actual file)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load your dataset (replace 'your_data.csv' with your actual file)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/cleaned_data.csv'</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Select only the relevant numeric variables</span>
@@ -7828,8 +8110,8 @@ a.anchor-link {
 ✅ <strong>Support for stricter car emissions standards (<code>cc_pol_car = 3.71</code>) is higher than a carbon tax (<code>cc_pol_tax = 3.19</code>)</strong><br/>
 ✅ <strong>Carbon taxes are more polarizing, with some strong support but also strong opposition</strong></p>
 <hr/>
-<h4 id="5%EF%B8%8F%E2%83%A3-Overall-Key-Takeaways"><strong>5️⃣ Overall Key Takeaways</strong><a class="anchor-link" href="#5%EF%B8%8F%E2%83%A3-Overall-Key-Takeaways">¶</a></h4><p>✅ <strong>Climate change perception is generally high, with strong agreement on global impact</strong><br/>
-✅ <strong>Support for climate policy depends on financial cost</strong> — higher costs reduce approval<br/>
+<h4 id="5%EF%B8%8F%E2%83%A3-Overall-Key-Takeaways"><strong>5️⃣ Overall Key Takeaways</strong><a class="anchor-link" href="#5%EF%B8%8F%E2%83%A3-Overall-Key-Takeaways">¶</a></h4><p>✅ <strong>Climate change perception is generally high, especially on global impact</strong><br/>
+✅ <strong>Support for climate policy depends on financial cost</strong> — higher costs reduce support<br/>
 ✅ <strong>Regulatory measures (e.g., emissions standards) receive more support than economic measures (e.g., carbon tax)</strong></p>
 </div>
 </div>
@@ -7850,13 +8132,10 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [59]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="c1"># Select only numerical columns</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Select only numerical columns</span>
 <span class="n">df_num</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns_of_interest</span><span class="p">]</span>
 
 <span class="c1"># Plot histograms for numerical columns with improved layout</span>
@@ -7904,39 +8183,39 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h4 id="%F0%9F%94%8D-Key-Observations"><strong>🔍 Key Observations</strong><a class="anchor-link" href="#%F0%9F%94%8D-Key-Observations">¶</a></h4><ol>
 <li><strong>Categorical-Like Distribution:</strong><ul>
-<li>Most variables have <strong>discrete values (1 to 5)</strong>, indicating Likert scale responses.</li>
-<li>Many variables show <strong>skewed distributions</strong>, suggesting <strong>strong opinions</strong> in one direction.</li>
+<li>Most variables have <strong>discrete values (1 to 5)</strong>, indicating Likert scale responses</li>
+<li>Many variables show <strong>skewed distributions</strong>, suggesting <strong>strong opinions</strong> in one direction</li>
 </ul>
 </li>
-<li><strong>Support for Climate Policies (<code>ccSolve</code> Variables)</strong><ul>
+<li><strong>Support for Climate Policies (<code>ccSolve</code> variables)</strong><ul>
 <li><strong><code>ccSolve100</code>, <code>ccSolve50</code>, <code>ccSolve10</code>, <code>ccSolve1</code>, <code>ccSolve0</code></strong>:<ul>
-<li><strong>Higher costs (<code>ccSolve100</code>) → More disapproval (peaked at 1).</strong></li>
-<li><strong>Lower costs (<code>ccSolve1</code>, <code>ccSolve0</code>) → More balanced responses.</strong></li>
-<li>This suggests people are <strong>more willing to contribute when the personal cost is lower</strong>.</li>
+<li><strong>Higher costs (<code>ccSolve100</code>) → More disapproval (peaked at 1)</strong></li>
+<li><strong>Lower costs (<code>ccSolve1</code>, <code>ccSolve0</code>) → More balanced responses</strong></li>
+<li>This suggests people are <strong>more willing to contribute when the personal cost is lower</strong></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>Climate Change Perception (<code>cc4_*</code> Variables)</strong><ul>
+<li><strong>Climate Change Perception (<code>cc4_*</code> variables)</strong><ul>
 <li><strong><code>cc4_world</code>, <code>cc4_poorUS</code>, <code>cc4_wealthUS</code></strong>:<ul>
-<li><strong>More responses at 4-5</strong>, showing <strong>strong concerns about climate change</strong>.</li>
-<li>Differences in perception depending on whether the impact is on <strong>wealthy vs. poor communities</strong>.</li>
+<li><strong>More responses at 4-5</strong>, showing <strong>strong concerns about climate change</strong></li>
+<li>Differences in perception depending on whether the impact is on <strong>wealthy vs. poor communities</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>Policy Support Variables (<code>cc_pol_tax</code>, <code>cc_pol_car</code>)</strong><ul>
 <li><strong><code>cc_pol_tax</code> (carbon tax) and <code>cc_pol_car</code> (emission standards)</strong>:<ul>
-<li><strong>Peak responses at 3-5</strong>, meaning <strong>moderate to strong support for environmental policies</strong>.</li>
+<li><strong>Peak responses at 3-5</strong>, meaning <strong>moderate to strong support for environmental policies</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
 <hr/>
-<h4 id="%F0%9F%93%8C-Key-Takeways"><strong>📌 Key Takeways</strong><a class="anchor-link" href="#%F0%9F%93%8C-Key-Takeways">¶</a></h4><p>✅ <strong>Higher costs reduce climate policy support (<code>ccSolve100</code> vs. <code>ccSolve0</code>).</strong><br/>
-✅ <strong>People show more concern about climate change in general (<code>cc4_world</code>) than its effect on wealthier communities (<code>cc4_wealthUS</code>).</strong><br/>
-✅ <strong>Support for policy interventions (tax, emissions) is moderate to high.</strong></p>
+<h4 id="%F0%9F%93%8C-Key-Takeways"><strong>📌 Key Takeways</strong><a class="anchor-link" href="#%F0%9F%93%8C-Key-Takeways">¶</a></h4><p>✅ <strong>Higher costs reduce climate policy support (<code>ccSolve100</code> vs. <code>ccSolve0</code>)</strong><br/>
+✅ <strong>People show more concern about climate change in general (<code>cc4_world</code>) than its effect on wealthier communities (<code>cc4_wealthUS</code>)</strong><br/>
+✅ <strong>Support for policy interventions (tax, emissions) is moderate to high</strong></p>
 </div>
 </div>
 </div>
@@ -7956,7 +8235,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load the cleaned CSV file from the data directory</span>
@@ -8002,26 +8281,26 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Spearman-Correlation-Matrix-Interpretation"><strong>Spearman Correlation Matrix Interpretation</strong><a class="anchor-link" href="#Spearman-Correlation-Matrix-Interpretation">¶</a></h4><p>The correlation matrix visualizes relationships between variables using <strong>Spearman’s Rank Correlation</strong>. The scale ranges from <strong>-1 (perfect negative correlation)</strong> to <strong>+1 (perfect positive correlation)</strong></p>
+<h4 id="Spearman-Correlation-Matrix"><strong>Spearman Correlation Matrix</strong><a class="anchor-link" href="#Spearman-Correlation-Matrix">¶</a></h4><p>The correlation matrix visualizes relationships between variables using <strong>Spearman’s Rank Correlation</strong>. The scale ranges from <strong>-1 (perfect negative correlation)</strong> to <strong>+1 (perfect positive correlation)</strong></p>
 <p><strong>High Correlations (Above 0.75)</strong></p>
 <ul>
-<li><strong><code>cc4_world</code> ↔ <code>cc4_poorUS</code></strong> (0.79)</li>
-<li><strong><code>cc4_comm</code> ↔ <code>cc4_poorUS</code></strong> (0.77)</li>
-<li><strong><code>cc4_comm</code> ↔ <code>cc4_famheal</code></strong> (0.81)</li>
-<li><strong><code>ccSolve50</code> ↔ <code>ccSolve100</code></strong> (0.83)</li>
-<li><strong><code>ccSolve10</code> ↔ <code>ccSolve50</code></strong> (0.93)</li>
 <li><strong><code>ccSolve1</code> ↔ <code>ccSolve10</code></strong> (0.96)</li>
+<li><strong><code>ccSolve10</code> ↔ <code>ccSolve50</code></strong> (0.93)</li>
+<li><strong><code>ccSolve50</code> ↔ <code>ccSolve100</code></strong> (0.83)</li>
+<li><strong><code>cc4_comm</code> ↔ <code>cc4_famheal</code></strong> (0.81)</li>
+<li><strong><code>cc4_world</code> ↔ <code>cc4_poorUS</code></strong> (0.79)</li>
+<li><strong><code>ccSolve0</code> ↔ <code>ccSolve1</code></strong> (0.79)</li>
+<li><strong><code>cc4_comm</code> ↔ <code>cc4_poorUS</code></strong> (0.77)</li>
+<li><strong><code>cc4_famheal</code> ↔ <code>cc4_famecon</code></strong> (0.76)</li>
 </ul>
 <p>✅ <strong>These indicate strong relationships</strong>, meaning that as one variable increases, the other tends to increase significantly</p>
 <hr/>
 <p><strong>Moderate Correlations (Between 0.5 and 0.75)</strong></p>
 <ul>
-<li><strong><code>cc4_world</code> ↔ <code>cc4_wealthUS</code></strong> (0.60)</li>
 <li><strong><code>cc4_wealthUS</code> ↔ <code>cc4_comm</code></strong> (0.71)</li>
-<li><strong><code>cc4_famheal</code> ↔ <code>cc4_famecon</code></strong> (0.76)</li>
-<li><strong><code>cc4_poorUS</code> ↔ <code>cc4_famheal</code></strong> (0.66)</li>
 <li><strong><code>cc_pol_tax</code> ↔ <code>cc_pol_car</code></strong> (0.69)</li>
-<li><strong><code>ccSolve0</code> ↔ <code>ccSolve1</code></strong> (0.79)</li>
+<li><strong><code>cc4_poorUS</code> ↔ <code>cc4_famheal</code></strong> (0.66)</li>
+<li><strong><code>cc4_world</code> ↔ <code>cc4_wealthUS</code></strong> (0.60)</li>
 </ul>
 <p>✅ <strong>These indicate meaningful relationships</strong>, but with slightly weaker strength than high correlations</p>
 <hr/>
@@ -8029,19 +8308,19 @@ a.anchor-link {
 <ul>
 <li><strong><code>cc4_world</code> ↔ <code>ccSolve0</code></strong> (0.50)</li>
 <li><strong><code>cc4_famecon</code> ↔ <code>ccSolve0</code></strong> (0.41)</li>
-<li><strong><code>cc4_comm</code> ↔ <code>cc_pol_tax</code></strong> (0.36)</li>
 <li><strong><code>cc4_famheal</code> ↔ <code>cc_pol_car</code></strong> (0.37)</li>
-<li><strong><code>ccSolve100</code> ↔ <code>cc_pol_tax</code></strong> (0.27)</li>
+<li><strong><code>cc4_comm</code> ↔ <code>cc_pol_tax</code></strong> (0.36)</li>
+<li><strong><code>cc4_comm</code> ↔ <code>cc_pol_car</code></strong> (0.31)</li>
 </ul>
 <p>✅ <strong>These suggest some association</strong>, but the relationship is weaker</p>
 <hr/>
 <p><strong>Low Correlations (Below 0.3)</strong></p>
 <ul>
-<li><strong><code>cc4_wealthUS</code> ↔ <code>ccSolve100</code></strong> (0.18)</li>
+<li><strong><code>ccSolve100</code> ↔ <code>cc_pol_tax</code></strong> (0.27)</li>
 <li><strong><code>cc4_poorUS</code> ↔ <code>ccSolve50</code></strong> (0.27)</li>
-<li><strong><code>cc4_famecon</code> ↔ <code>ccSolve100</code></strong> (0.14)</li>
-<li><strong><code>cc4_comm</code> ↔ <code>cc_pol_car</code></strong> (0.31)</li>
 <li><strong><code>ccSolve100</code> ↔ <code>cc_pol_car</code></strong> (0.22)</li>
+<li><strong><code>cc4_wealthUS</code> ↔ <code>ccSolve100</code></strong> (0.18)</li>
+<li><strong><code>cc4_famecon</code> ↔ <code>ccSolve100</code></strong> (0.14)</li>
 </ul>
 <p>✅ <strong>These indicate weak or negligible relationships</strong> between the variables</p>
 <hr/>
@@ -8067,7 +8346,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [60]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -8139,7 +8418,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [61]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">factor_analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">FactorAnalyzer</span>
@@ -8325,7 +8604,7 @@ c:\Users\pleivadaros\Documents\msc\msc-thesis\climate-opinions-shift-elections-p
 </li>
 <li><strong>Factor 2: Climate Impact Perception</strong><ul>
 <li>High loadings on <strong>cc4_world, cc4_wealthUS, cc4_poorUS, cc4_comm, cc4_famheal, and cc4_famecon</strong></li>
-<li>Reflects <strong>perceived harm of climate change</strong> on different societal levels</li>
+<li>Represents <strong>perceived harm of climate change</strong> on different societal levels</li>
 </ul>
 </li>
 <li><strong>Factor 3: Economic &amp; Regulatory Policy Attitudes</strong><ul>
@@ -8339,7 +8618,7 @@ c:\Users\pleivadaros\Documents\msc\msc-thesis\climate-opinions-shift-elections-p
 <li>Factors beyond the <strong>third</strong> contribute little additional variance</li>
 </ul>
 <h4 id="5%EF%B8%8F%E2%83%A3-Key-Insights"><strong>5️⃣ Key Insights</strong><a class="anchor-link" href="#5%EF%B8%8F%E2%83%A3-Key-Insights">¶</a></h4><p>✅ Public opinion on climate policies follows three distinct dimensions<br/>
-✅ Willingness to pay (ccSolve) variables are highly correlated, forming a strong policy support factor<br/>
+✅ Willingness to pay (ccSolve) variables are highly correlated<br/>
 ✅ Climate impact perception is separate from economic policy attitudes, suggesting people differentiate between climate harm and policy actions</p>
 </div>
 </div>
@@ -8349,13 +8628,12 @@ c:\Users\pleivadaros\Documents\msc\msc-thesis\climate-opinions-shift-elections-p
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [62]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Define the factor loadings dataframe</span>
 <span class="n">loadings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s2">"Variable"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"cc4_world"</span><span class="p">,</span> <span class="s2">"cc4_wealthUS"</span><span class="p">,</span> <span class="s2">"cc4_poorUS"</span><span class="p">,</span> <span class="s2">"cc4_comm"</span><span class="p">,</span> <span class="s2">"cc4_famheal"</span><span class="p">,</span> <span class="s2">"cc4_famecon"</span><span class="p">,</span>
-                 <span class="s2">"ccSolve100"</span><span class="p">,</span> <span class="s2">"ccSolve50"</span><span class="p">,</span> <span class="s2">"ccSolve10"</span><span class="p">,</span> <span class="s2">"ccSolve1"</span><span class="p">,</span> <span class="s2">"ccSolve0"</span><span class="p">,</span> <span class="s2">"cc_pol_tax"</span><span class="p">,</span> <span class="s2">"cc_pol_car"</span><span class="p">],</span>
+    <span class="s2">"Variable"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"cc4_world"</span><span class="p">,</span> <span class="s2">"cc4_wealthUS"</span><span class="p">,</span> <span class="s2">"cc4_poorUS"</span><span class="p">,</span> <span class="s2">"cc4_comm"</span><span class="p">,</span> <span class="s2">"cc4_famheal"</span><span class="p">,</span> <span class="s2">"cc4_famecon"</span><span class="p">,</span> <span class="s2">"ccSolve100"</span><span class="p">,</span> <span class="s2">"ccSolve50"</span><span class="p">,</span> <span class="s2">"ccSolve10"</span><span class="p">,</span> <span class="s2">"ccSolve1"</span><span class="p">,</span> <span class="s2">"ccSolve0"</span><span class="p">,</span> <span class="s2">"cc_pol_tax"</span><span class="p">,</span> <span class="s2">"cc_pol_car"</span><span class="p">],</span>
     <span class="s2">"Factor1"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.026</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.036</span><span class="p">,</span> <span class="mf">0.026</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.034</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.038</span><span class="p">,</span> <span class="mf">0.836</span><span class="p">,</span> <span class="mf">1.039</span><span class="p">,</span> <span class="mf">0.968</span><span class="p">,</span> <span class="mf">0.756</span><span class="p">,</span> <span class="mf">0.535</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.082</span><span class="p">],</span>
     <span class="s2">"Factor2"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.394</span><span class="p">,</span> <span class="mf">0.704</span><span class="p">,</span> <span class="mf">0.525</span><span class="p">,</span> <span class="mf">0.817</span><span class="p">,</span> <span class="mf">0.957</span><span class="p">,</span> <span class="mf">0.886</span><span class="p">,</span> <span class="mf">0.071</span><span class="p">,</span> <span class="mf">0.042</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.038</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.069</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.046</span><span class="p">,</span> <span class="mf">0.013</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.084</span><span class="p">],</span>
     <span class="s2">"Factor3"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.569</span><span class="p">,</span> <span class="mf">0.103</span><span class="p">,</span> <span class="mf">0.437</span><span class="p">,</span> <span class="mf">0.153</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.086</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.209</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.185</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.168</span><span class="p">,</span> <span class="mf">0.055</span><span class="p">,</span> <span class="mf">0.313</span><span class="p">,</span> <span class="mf">0.460</span><span class="p">,</span> <span class="mf">0.755</span><span class="p">,</span> <span class="mf">0.890</span><span class="p">]</span>
@@ -8438,7 +8716,7 @@ c:\Users\pleivadaros\Documents\msc\msc-thesis\climate-opinions-shift-elections-p
 </ul>
 <hr/>
 <h4 id="3%EF%B8%8F%E2%83%A3-Key-Takeaways"><strong>3️⃣ Key Takeaways</strong><a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Key-Takeaways">¶</a></h4><p>✅ <strong>Public opinion on climate policies follows three distinct dimensions</strong><br/>
-✅ <strong>Willingness to pay for climate policies (<code>ccSolve*</code>) is highly correlated, forming a strong policy support factor</strong><br/>
+✅ <strong>Willingness to pay for climate policies (<code>ccSolve*</code>) is highly correlated</strong><br/>
 ✅ <strong>Climate impact perception (<code>cc4_*</code>) is separate from economic policy attitudes, showing people differentiate between climate harm and policy actions</strong><br/>
 ✅ <strong>Economic policy attitudes (<code>cc_pol_*</code>) form an independent factor, meaning people who support regulatory actions may not always support direct financial contributions</strong></p>
 </div>
@@ -8460,7 +8738,7 @@ c:\Users\pleivadaros\Documents\msc\msc-thesis\climate-opinions-shift-elections-p
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [63]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
@@ -8588,7 +8866,7 @@ PCA Transformed Data:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [64]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Standardize data</span>
@@ -8663,10 +8941,10 @@ PCA Transformed Data:
 <li><strong>Interpretation:</strong> PC3 seems to represent <strong>regulatory and economic climate policies</strong>, including carbon taxes and emissions regulations</li>
 </ul>
 <hr/>
-<h4 id="3%EF%B8%8F%E2%83%A3-Takeaways"><strong>3️⃣ Takeaways</strong><a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Takeaways">¶</a></h4><p>✅ <strong>Climate change perception (<code>cc4_*</code>) forms a dominant theme in PC1</strong><br/>
+<h4 id="3%EF%B8%8F%E2%83%A3-Takeaways"><strong>3️⃣ Takeaways</strong><a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Takeaways">¶</a></h4><p>✅ <strong>Climate change perception (<code>cc4_*</code>) is the most dominant in PC1</strong><br/>
 ✅ <strong>Financial willingness to support policies (<code>ccSolve_*</code>) is captured strongly in PC2</strong><br/>
 ✅ <strong>Economic and regulatory policies (<code>cc_pol_*</code>) load onto PC3</strong><br/>
-✅ <strong>Other PCs contribute marginal variance and may not be as significant</strong></p>
+✅ <strong>Other PCs contribute very little variance and may not be as significant</strong></p>
 </div>
 </div>
 </div>
@@ -8675,7 +8953,7 @@ PCA Transformed Data:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [65]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Run PCA</span>
@@ -8692,12 +8970,7 @@ PCA Transformed Data:
 
 <span class="c1"># Plot Cos² values heatmap</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="c1">#sns.heatmap(cos2_df, annot=True, cmap="coolwarm", center=0.5, linewidths=0.5)</span>
-<span class="c1">#sns.heatmap(cos2_df, annot=True, cmap="Blues", center=0.5, linewidths=0.5)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cos2_df</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"RdBu_r"</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="c1">#sns.heatmap(cos2_df, annot=True, cmap="Spectral", center=0.5, linewidths=0.5)</span>
-<span class="c1">#sns.heatmap(cos2_df, annot=True, cmap="bwr", center=0.5, linewidths=0.5)</span>
-<span class="c1">#sns.heatmap(cos2_df, annot=True, cmap="coolwarm", center=0.3, linewidths=0.5)</span>
 
 <span class="c1"># Formatting</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Cos² of Variables on Each Component (1-5)"</span><span class="p">)</span>
@@ -8745,7 +9018,7 @@ PCA Transformed Data:
 </ul>
 <p><strong>🔵 PC2 (Second Principal Component)</strong></p>
 <ul>
-<li><strong>Higher contributions from:</strong> <code>ccSolve10 (0.15)</code>, <code>ccSolve50 (0.17)</code>, <code>ccSolve100 (0.13)</code>, <code>ccSolve1 (0.098)</code>, <code>cc4_famheal (0.085)</code></li>
+<li><strong>Higher contributions from:</strong> <code>ccSolve10 (0.15)</code>, <code>ccSolve50 (0.17)</code>, <code>ccSolve100 (0.13)</code></li>
 <li><strong>Interpretation:</strong> PC2 captures <strong>financial willingness to support climate policies</strong></li>
 </ul>
 <p><strong>🔵 PC3 (Third Principal Component)</strong></p>
@@ -8763,7 +9036,7 @@ PCA Transformed Data:
 <h4 id="3%EF%B8%8F%E2%83%A3-Takeaways"><strong>3️⃣ Takeaways</strong><a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Takeaways">¶</a></h4><p>✅ <strong>PC1 and PC2 are the most meaningful dimensions</strong>, capturing perceptions of climate change and financial support for policies<br/>
 ✅ <strong>PC3 focuses on economic policy preferences, such as carbon taxes and emissions regulations</strong><br/>
 ✅ <strong>Some variables are weakly represented (low Cos²), meaning they may not be strongly linked to any single component</strong><br/>
-✅ <strong>If a variable has low Cos² across all PCs, it might not contribute significantly to the dataset’s variance</strong></p>
+✅ <strong>If a variable has low Cos² across all PCs, it might not contribute significantly to the dataset’s variance:</strong> <code>cc4_comm</code>, <code>cc4_famheal</code>, <code>cc4_wealthUS</code></p>
 </div>
 </div>
 </div>
@@ -8783,7 +9056,7 @@ PCA Transformed Data:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [66]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastICA</span>
@@ -8888,6 +9161,53 @@ PCA Transformed Data:
 ✅ <strong>IC4 represents personal and global perceptions of climate change</strong><br/>
 ✅ <strong>IC5 focuses on policy regulations and how people react to them</strong><br/>
 ✅ <strong>The negative associations (blue cells) indicate potential trade-offs between factors, meaning people who strongly support one factor may oppose another</strong></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Based on <strong>exploratory data analysis (EDA), factor analysis (PCA &amp; ICA), and correlation checks</strong>, we select variables that:</p>
+<ul>
+<li>Capture key <strong>climate change perceptions and policy support</strong></li>
+<li>Explain variance well in <strong>PCA and ICA</strong></li>
+<li>Show meaningful correlations while avoiding redundancy</li>
+</ul>
+<h4 id="%F0%9F%8C%8D-Climate-Change-Perception-Variables"><strong>🌍 Climate Change Perception Variables</strong><a class="anchor-link" href="#%F0%9F%8C%8D-Climate-Change-Perception-Variables">¶</a></h4><ul>
+<li><code>cc4_world</code> → Perception of climate change affecting the world</li>
+<li><code>cc4_poorUS</code> → Impact of climate change on poor communities in the U.S</li>
+<li><code>cc4_comm</code> → Impact of climate change on local communities</li>
+</ul>
+<h4 id="%F0%9F%92%B0-Financial-Support-for-Climate-Policies"><strong>💰 Financial Support for Climate Policies</strong><a class="anchor-link" href="#%F0%9F%92%B0-Financial-Support-for-Climate-Policies">¶</a></h4><ul>
+<li><code>ccSolve100</code> → Support for policies costing $100/month</li>
+<li><code>ccSolve50</code> → Support for policies costing $50/month</li>
+<li><code>ccSolve10</code> → Support for policies costing $10/month</li>
+<li><code>ccSolve1</code> → Support for policies costing $1/month</li>
+</ul>
+<h4 id="%F0%9F%93%9C-Policy-Support-Variables"><strong>📜 Policy Support Variables</strong><a class="anchor-link" href="#%F0%9F%93%9C-Policy-Support-Variables">¶</a></h4><ul>
+<li><code>cc_pol_tax</code> → Support for a carbon tax</li>
+<li><code>cc_pol_car</code> → Support for stricter car emission regulations</li>
+</ul>
+<h4 id="%E2%9D%8C-Variables-Considered-for-Removal"><strong>❌ Variables Considered for Removal</strong><a class="anchor-link" href="#%E2%9D%8C-Variables-Considered-for-Removal">¶</a></h4><ul>
+<li><code>cc4_wealthUS</code> → Perception of climate change impact on wealthy U.S. communities (less informative)</li>
+<li><code>cc4_famheal</code>, <code>cc4_famecon</code> → Likely redundant with other perception variables</li>
+<li><code>ccSolve0</code> → Dropping <code>ccSolve0</code> since willingness to pay is already captured by other <code>ccSolve</code> responses</li>
+</ul>
 </div>
 </div>
 </div>
