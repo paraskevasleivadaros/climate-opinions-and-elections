@@ -3,3 +3,6 @@ numpy
 jupyter
 seaborn
 matplotlib
+skimpy
+factor-analyzer
+scikit-learn
