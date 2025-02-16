@@ -1,5 +1,5 @@
 # climate-opinions-shift-elections-policies
-How much do people's attitudes toward climate change and climate related policies shift during an election?
+Electoral Cycles and Climate Attitudes: How Do People's Views on Climate Change and Policies Shift During an Election?
 
 ### Relevance of research question
 My research question is highly relevant as it explores the relationship between political events, policies, and society's attitudes toward climate change. Climate change is one of the most important global challenges at the moment. For this reason, understanding how elections and policies shape public opinion is crucial. This knowledge is important for policymakers and researchers working to connect political decisions with public involvement in tackling climate change.
