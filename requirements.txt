@@ -6,3 +6,4 @@ matplotlib
 skimpy
 factor-analyzer
 scikit-learn
+tex
