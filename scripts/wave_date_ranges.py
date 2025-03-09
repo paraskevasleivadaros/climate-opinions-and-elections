@@ -10,7 +10,7 @@ df['RecordedDate'] = pd.to_datetime(df['RecordedDate'])
 wave_date_ranges = df.groupby('WAVE')['RecordedDate'].agg(['min', 'max'])
 
 # Write the date ranges to a Markdown file
-with open('results/wave_date_ranges.md', 'w') as f:
+with open('data/wave_date_ranges.md', 'w') as f:
     f.write("# Date Ranges for Each Wave\n\n")
     for wave, row in wave_date_ranges.iterrows():
         f.write(f"## Wave {wave}\n")
@@ -18,4 +18,4 @@ with open('results/wave_date_ranges.md', 'w') as f:
         f.write(f"- **Latest recording:** {row['max']}\n")
         f.write("\n")
 
-print("Date ranges for each wave have been calculated and written to 'results/wave_date_ranges.md'.")
+print("Date ranges for each wave have been calculated and written to 'data/wave_date_ranges.md'.")

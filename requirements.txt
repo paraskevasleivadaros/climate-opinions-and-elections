@@ -11,3 +11,5 @@ cdt
 networkx
 torch
 rpy2
+causal-learn
+graphviz

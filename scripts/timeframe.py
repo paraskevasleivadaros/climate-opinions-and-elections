@@ -21,7 +21,7 @@ result = pd.DataFrame({
 })
 
 # Define the absolute path to the result file
-result_file_path = os.path.join(os.path.dirname(__file__), '../data/timeframe.csv')
+result_file_path = os.path.join(os.path.dirname(__file__), '../data/timeframe.md')
 result.to_csv(result_file_path, index=False)
 
 print(f"Results saved to {result_file_path}")
