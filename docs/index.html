@@ -7511,13 +7511,162 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8714acc0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Table-of-Contents">Table of Contents<a class="anchor-link" href="#Table-of-Contents">¶</a></h1><ul>
+<li><a href="#table-of-contents">Table of Contents</a><ul>
+<li><a href="#exploratory-data-analysis">Exploratory Data Analysis</a><ul>
+<li><a href="#data-preparation">Data Preparation</a><ul>
+<li><a href="#check-for-duplicate-pids-in-the-dataset">Check for duplicate PIDs in the dataset</a></li>
+<li><a href="#filter-wave-survey-data">Filter Wave Survey Data</a></li>
+<li><a href="#likert-scale-standardization">Likert Scale Standardization</a></li>
+<li><a href="#fill-missing-values">Fill missing values</a></li>
+</ul>
+</li>
+<li><a href="#data-description">Data Description</a><ul>
+<li><a href="#climate-change-perception-variables-cc4">Climate Change Perception Variables (<code>cc4_*</code>)</a></li>
+<li><a href="#willingness-to-pay-for-climate-solutions-ccsolve">Willingness to Pay for Climate Solutions (<code>ccSolve*</code>)</a></li>
+<li><a href="#climate-policy-support-cc-pol">Climate Policy Support (<code>cc_pol_*</code>)</a></li>
+<li><a href="#political-affiliation-and-ideology-pol">Political Affiliation and Ideology  (<code>pol_*</code>)</a></li>
+</ul>
+</li>
+<li><a href="#data-summary">Data Summary</a><ul>
+<li><a href="#1-summary-statistics">1️⃣ Summary Statistics</a></li>
+<li><a href="#2-climate-perception-variables-cc4">2️⃣ Climate Perception Variables (<code>cc4_*</code>)</a><ul>
+<li><a href="#key-insights">📝 Key Insights</a></li>
+</ul>
+</li>
+<li><a href="#3-willingness-to-pay-for-climate-policy-ccsolve">3️⃣ Willingness to Pay for Climate Policy (<code>ccSolve*</code>)</a><ul>
+<li><a href="#key-insights">📝 Key Insights</a></li>
+</ul>
+</li>
+<li><a href="#4-climate-policy-support-cc-pol">4️⃣ Climate Policy Support (<code>cc_pol_*</code>)</a><ul>
+<li><a href="#key-insights">📝 Key Insights</a></li>
+</ul>
+</li>
+<li><a href="#5-political-identity-ideology-pol-party-pol-ideology">5️⃣ Political Identity &amp; Ideology (<code>pol_party</code>, <code>pol_ideology</code>)</a><ul>
+<li><a href="#key-insights">📝 Key Insights</a></li>
+</ul>
+</li>
+<li><a href="#6-overall-key-takeaways">6️⃣ Overall Key Takeaways</a></li>
+</ul>
+</li>
+<li><a href="#numerical-data-distribution">Numerical Data Distribution</a><ul>
+<li><a href="#key-observations">🔍 Key Observations</a></li>
+<li><a href="#key-takeways">📌 Key Takeways</a></li>
+</ul>
+</li>
+<li><a href="#spearman-correlation-matrix">Spearman Correlation Matrix</a><ul>
+<li><a href="#key-observations">🔍 Key Observations</a></li>
+<li><a href="#key-takeaways">📌 Key Takeaways</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#exploratory-factor-analysis-efa">Exploratory Factor Analysis (EFA)</a><ul>
+<li><a href="#1-optimal-number-of-factors">1️⃣ Optimal Number of Factors</a></li>
+<li><a href="#2-factor-loadings">2️⃣ Factor Loadings</a></li>
+<li><a href="#3-factor-interpretations">3️⃣ Factor Interpretations</a></li>
+<li><a href="#4-eigenvalues">4️⃣ Eigenvalues</a></li>
+<li><a href="#5-key-insights">5️⃣ Key Insights</a></li>
+<li><a href="#1-factor-loadings">1️⃣ Factor Loadings</a></li>
+<li><a href="#2-interpretation-of-the-factor-loadings-heatmap">2️⃣ Interpretation of the Factor Loadings Heatmap</a></li>
+<li><a href="#3-key-takeaways">3️⃣ Key Takeaways</a></li>
+<li><a href="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a><ul>
+<li><a href="#1-pca">1️⃣ PCA</a></li>
+<li><a href="#2-explained-variance-ratios">2️⃣ Explained Variance Ratios</a></li>
+<li><a href="#3-visualizing-pca-scree-plot">3️⃣ Visualizing PCA: Scree Plot</a></li>
+<li><a href="#pca-variable-contributions-heatmap">PCA Variable Contributions Heatmap</a><ul>
+<li><a href="#1-understanding-the-heatmap">1️⃣ Understanding the Heatmap</a></li>
+<li><a href="#2-key-observations">2️⃣ Key Observations</a></li>
+<li><a href="#3-takeaways">3️⃣ Takeaways</a></li>
+</ul>
+</li>
+<li><a href="#cos-squared-cosine-heatmap">Cos² (Squared Cosine) Heatmap</a></li>
+<li><a href="#1-understanding-cos-values">1️⃣ Understanding Cos² Values</a></li>
+<li><a href="#2-key-observations">2️⃣ Key Observations</a></li>
+<li><a href="#3-takeaways">3️⃣ Takeaways</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#independent-component-analysis-ica">Independent Component Analysis (ICA)</a><ul>
+<li><a href="#independent-component-analysis-ica-weight-matrix-heatmap"><strong>Independent Component Analysis (ICA) Weight Matrix Heatmap</strong></a></li>
+<li><a href="#1-understanding-the-heatmap">1️⃣ Understanding the Heatmap</a></li>
+<li><a href="#2-key-observations">2️⃣ Key Observations</a></li>
+<li><a href="#3-key-takeaways">3️⃣ Key Takeaways</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a><ul>
+<li><a href="#climate-change-perception-variables">🌍 Climate Change Perception Variables</a></li>
+<li><a href="#financial-support-for-climate-policies">💰 Financial Support for Climate Policies</a></li>
+<li><a href="#policy-support-variables">📜 Policy Support Variables</a></li>
+<li><a href="#political-identity-variables">🗳️ Political Identity Variables</a></li>
+<li><a href="#variables-considered-for-removal">❌ Variables Considered for Removal</a></li>
+</ul>
+</li>
+<li><a href="#causal-discovery">Causal Discovery</a><ul>
+<li><a href="#data-preparation-and-summary">Data Preparation and Summary</a><ul>
+<li><a href="#spearman-correlation-matrix">Spearman Correlation Matrix</a></li>
+<li><a href="#distribution-of-all-variables-with-density-overlay">Distribution of All Variables with Density Overlay</a><ul>
+<li><a href="#step-1-install-r-on-your-system">Step 1. Install R on Your System</a></li>
+<li><a href="#step-2-open-r-and-run-the-following-commands">Step 2. Open R and run the following commands</a></li>
+<li><a href="#step-3-ensure-python-can-find-r">Step 3: Ensure Python Can Find R</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#how-to-install-rcit-and-rcot-in-r"><strong>🔹 How to Install <code>RCIT</code> and <code>RCoT</code> in R</strong></a></li>
+<li><a href="#step-1-open-r-and-install-required-dependencies"><strong>✅ Step 1: Open R and Install Required Dependencies</strong></a></li>
+<li><a href="#step-2-install-rcit-from-github"><strong>✅ Step 2: Install <code>RCIT</code> from GitHub</strong></a></li>
+<li><a href="#step-3-load-and-test-rcit"><strong>✅ Step 3: Load and Test <code>RCIT</code></strong></a></li>
+<li><a href="#pc">PC</a><ul>
+<li><a href="#1-key-structural-insights">1️⃣ Key Structural Insights</a><ul>
+<li><a href="#climate-perception-as-a-core-driver">🟢 Climate Perception as a Core Driver</a></li>
+<li><a href="#interdependence-between-climate-perception-variables">🔵 Interdependence Between Climate Perception Variables</a></li>
+</ul>
+</li>
+<li><a href="#2-political-influence-on-climate-policy-preferences">2️⃣ Political Influence on Climate Policy Preferences</a><ul>
+<li><a href="#the-role-of-policy-preferences">🔴 The Role of Policy Preferences</a></li>
+</ul>
+</li>
+<li><a href="#3-willingness-to-pay-as-a-progressive-ladder">3️⃣ Willingness to Pay as a Progressive Ladder</a></li>
+<li><a href="#4-cross-sector-interactions">4️⃣ Cross-Sector Interactions</a></li>
+<li><a href="#5-high-level-summary-implications">5️⃣ High-Level Summary &amp; Implications</a></li>
+<li><a href="#next-steps-potential-analyses">📌 Next Steps &amp; Potential Analyses</a></li>
+<li><a href="#1-general-structure">1️⃣ General Structure</a></li>
+<li><a href="#2-key-observations">2️⃣ Key Observations</a><ul>
+<li><a href="#central-variables-highly-connected">🟢 Central Variables (Highly Connected)</a></li>
+<li><a href="#political-variables-their-role">🔴 Political Variables &amp; Their Role</a></li>
+<li><a href="#financial-policy-support-trends">📉 Financial Policy Support Trends</a></li>
+</ul>
+</li>
+<li><a href="#3-insights-interpretations">3️⃣ Insights &amp; Interpretations</a></li>
+<li><a href="#potential-next-steps">📌 Potential Next Steps</a></li>
+</ul>
+</li>
+<li><a href="#fci">FCI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="table-of-contents">Table of Contents</h1>
+<ul>
 <li><a href="#exploratory-data-analysis">Exploratory Data Analysis</a><ul>
 <li><a href="#data-preparation">Data Preparation</a><ul>
 <li><a href="#check-for-duplicate-pids-in-the-dataset">Check for duplicate PIDs in the dataset</a></li>
@@ -7662,7 +7811,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exploratory-Data-Analysis">Exploratory Data Analysis<a class="anchor-link" href="#Exploratory-Data-Analysis">¶</a></h2>
+<h2 id="exploratory-data-analysis">Exploratory Data Analysis</h2>
 </div>
 </div>
 </div>
@@ -7673,7 +7822,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Data-Preparation">Data Preparation<a class="anchor-link" href="#Data-Preparation">¶</a></h3>
+<h3 id="data-preparation">Data Preparation</h3>
 </div>
 </div>
 </div>
@@ -7684,7 +7833,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Check-for-duplicate-PIDs-in-the-dataset">Check for duplicate PIDs in the dataset<a class="anchor-link" href="#Check-for-duplicate-PIDs-in-the-dataset">¶</a></h4>
+<h4 id="check-for-duplicate-pids-in-the-dataset">Check for duplicate PIDs in the dataset</h4>
 </div>
 </div>
 </div>
@@ -7748,7 +7897,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h4 id="Filter-Wave-Survey-Data">Filter Wave Survey Data<a class="anchor-link" href="#Filter-Wave-Survey-Data">¶</a></h4>
+<h4 id="filter-wave-survey-data">Filter Wave Survey Data</h4>
 </div>
 </div>
 </div>
@@ -7813,7 +7962,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h4 id="Likert-Scale-Standardization">Likert Scale Standardization<a class="anchor-link" href="#Likert-Scale-Standardization">¶</a></h4>
+<h4 id="likert-scale-standardization">Likert Scale Standardization</h4>
 </div>
 </div>
 </div>
@@ -7910,7 +8059,7 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h4 id="Fill-missing-values">Fill missing values<a class="anchor-link" href="#Fill-missing-values">¶</a></h4>
+<h4 id="fill-missing-values">Fill missing values</h4>
 </div>
 </div>
 </div>
@@ -8041,7 +8190,7 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Data-Description">Data Description<a class="anchor-link" href="#Data-Description">¶</a></h3>
+<h3 id="data-description">Data Description</h3>
 </div>
 </div>
 </div>
@@ -8053,29 +8202,30 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>The dataset consists of variables measuring <strong>perceptions of climate change impact, support for policies, willingness to pay (WTP) for climate solutions and political affiliation and ideology</strong></p>
-<h4 id="Climate-Change-Perception-Variables-(cc4_*)">Climate Change Perception Variables (<code>cc4_*</code>)<a class="anchor-link" href="#Climate-Change-Perception-Variables-(cc4_*)">¶</a></h4><ul>
-<li><strong><code>cc4_world</code></strong>: Perceived extent to which global warming is harming the world</li>
-<li><strong><code>cc4_wealthUS</code></strong>: Perceived harm of climate change on wealthy communities in the U.S.</li>
-<li><strong><code>cc4_poorUS</code></strong>: Perceived harm of climate change on poor communities in the U.S.</li>
-<li><strong><code>cc4_comm</code></strong>: Perceived impact of climate change on local communities</li>
-<li><strong><code>cc4_famheal</code></strong>: Perceived impact of climate change on family health</li>
-<li><strong><code>cc4_famecon</code></strong>: Perceived impact of climate change on family economic well-being</li>
-</ul>
-<h4 id="Willingness-to-Pay-for-Climate-Solutions-(ccSolve*)">Willingness to Pay for Climate Solutions (<code>ccSolve*</code>)<a class="anchor-link" href="#Willingness-to-Pay-for-Climate-Solutions-(ccSolve*)">¶</a></h4><ul>
-<li><strong><code>ccSolve100</code></strong>: Support for climate policies if they cost <strong>$100 per month</strong></li>
-<li><strong><code>ccSolve50</code></strong>: Support for climate policies if they cost <strong>$50 per month</strong></li>
-<li><strong><code>ccSolve10</code></strong>: Support for climate policies if they cost <strong>$10 per month</strong></li>
-<li><strong><code>ccSolve1</code></strong>: Support for climate policies if they cost <strong>$1 per month</strong></li>
-<li><strong><code>ccSolve0</code></strong>: General support for climate policies <strong>without specifying a cost</strong></li>
-</ul>
-<h4 id="Climate-Policy-Support-(cc_pol_*)">Climate Policy Support (<code>cc_pol_*</code>)<a class="anchor-link" href="#Climate-Policy-Support-(cc_pol_*)">¶</a></h4><ul>
-<li><strong><code>cc_pol_tax</code></strong>: Support for a <strong>carbon tax</strong> to reduce emissions</li>
-<li><strong><code>cc_pol_car</code></strong>: Support for <strong>stronger emissions standards for car manufacturers</strong></li>
-</ul>
-<h4 id="Political-Affiliation-and-Ideology--(pol_*)">Political Affiliation and Ideology  (<code>pol_*</code>)<a class="anchor-link" href="#Political-Affiliation-and-Ideology--(pol_*)">¶</a></h4><ul>
-<li><strong><code>pol_party</code></strong>: <strong>Political party</strong> identification (Republican, Leaning Republican, Independent, Leaning Democrat, Democrat)</li>
-<li><strong><code>pol_ideology</code></strong>: Self-reported <strong>political ideology</strong> (Very Conservative, Conservative, Moderate, Liberal, Very Liberal)</li>
-</ul>
+<h4 id="climate-change-perception-variables-cc4">Climate Change Perception Variables (`cc4_*`)</h4>
+- **`cc4_world`**: Perceived extent to which global warming is harming the world
+- **`cc4_wealthUS`**: Perceived harm of climate change on wealthy communities in the U.S.
+- **`cc4_poorUS`**: Perceived harm of climate change on poor communities in the U.S.
+- **`cc4_comm`**: Perceived impact of climate change on local communities
+- **`cc4_famheal`**: Perceived impact of climate change on family health
+- **`cc4_famecon`**: Perceived impact of climate change on family economic well-being
+
+<h4 id="willingness-to-pay-for-climate-solutions-ccsolve">Willingness to Pay for Climate Solutions (`ccSolve*`)</h4>
+- **`ccSolve100`**: Support for climate policies if they cost **$100 per month**
+- **`ccSolve50`**: Support for climate policies if they cost **$50 per month**
+- **`ccSolve10`**: Support for climate policies if they cost **$10 per month**
+- **`ccSolve1`**: Support for climate policies if they cost **$1 per month**
+- **`ccSolve0`**: General support for climate policies **without specifying a cost**
+
+<h4 id="climate-policy-support-cc-pol">Climate Policy Support (`cc_pol_*`)</h4>
+- **`cc_pol_tax`**: Support for a **carbon tax** to reduce emissions
+- **`cc_pol_car`**: Support for **stronger emissions standards for car manufacturers**
+
+<h4 id="political-affiliation-and-ideology-pol">Political Affiliation and Ideology  (`pol_*`)</h4>
+- **`pol_party`**: **Political party** identification (Republican, Leaning Republican, Independent, Leaning Democrat, Democrat)
+- **`pol_ideology`**: Self-reported **political ideology** (Very Conservative, Conservative, Moderate, Liberal, Very Liberal)
+
+
 </div>
 </div>
 </div>
@@ -8086,7 +8236,7 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Data-Summary">Data Summary<a class="anchor-link" href="#Data-Summary">¶</a></h3>
+<h3 id="data-summary">Data Summary</h3>
 </div>
 </div>
 </div>
@@ -8168,16 +8318,18 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="1%EF%B8%8F%E2%83%A3-Summary-Statistics">1️⃣ Summary Statistics<a class="anchor-link" href="#1%EF%B8%8F%E2%83%A3-Summary-Statistics">¶</a></h4><p>Each variable is described with:</p>
-<ul>
-<li><strong>Mean:</strong> The average value</li>
-<li><strong>SD (Standard Deviation):</strong> How spread out responses are</li>
-<li><strong>Min (p0) / Max (p100):</strong> The range of responses</li>
-<li><strong>Quartiles (p25, p50, p75):</strong> Percentiles of the distribution</li>
-<li><strong>Histogram:</strong> A small visual representation of the distribution</li>
-</ul>
+<h4 id="1-summary-statistics">1️⃣ Summary Statistics</h4>
+Each variable is described with:
+- **Mean:** The average value
+- **SD (Standard Deviation):** How spread out responses are
+- **Min (p0) / Max (p100):** The range of responses
+- **Quartiles (p25, p50, p75):** Percentiles of the distribution
+- **Histogram:** A small visual representation of the distribution
+
 <hr/>
-<h4 id="2%EF%B8%8F%E2%83%A3-Climate-Perception-Variables-(cc4_*)">2️⃣ Climate Perception Variables (<code>cc4_*</code>)<a class="anchor-link" href="#2%EF%B8%8F%E2%83%A3-Climate-Perception-Variables-(cc4_*)">¶</a></h4><p>These variables measure <strong>how much individuals believe climate change is affecting different groups and aspects of life</strong></p>
+<h4 id="2-climate-perception-variables-cc4">2️⃣ Climate Perception Variables (`cc4_*`)</h4>
+These variables measure **how much individuals believe climate change is affecting different groups and aspects of life**
+
 <table>
 <thead>
 <tr>
@@ -8239,11 +8391,15 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </tr>
 </tbody>
 </table>
-<h5 id="%F0%9F%93%9D-Key-Insights">📝 Key Insights<a class="anchor-link" href="#%F0%9F%93%9D-Key-Insights">¶</a></h5><p>✅ <strong>Most respondents believe climate change is harmful</strong>, but there is some variation in perceived impact<br/>
-✅ <strong>People believe climate change affects poor communities more (<code>cc4_poorUS = 3.39</code>) than wealthy ones (<code>cc4_wealthUS = 2.78</code>)</strong><br/>
-✅ <strong>The highest concern is for global impact (<code>cc4_world = 3.63</code>)</strong></p>
+<h5 id="key-insights">📝 Key Insights</h5>
+✅ **Most respondents believe climate change is harmful**, but there is some variation in perceived impact  
+✅ **People believe climate change affects poor communities more (`cc4_poorUS = 3.39`) than wealthy ones (`cc4_wealthUS = 2.78`)**  
+✅ **The highest concern is for global impact (`cc4_world = 3.63`)**  
+
 <hr/>
-<h4 id="3%EF%B8%8F%E2%83%A3-Willingness-to-Pay-for-Climate-Policy-(ccSolve*)">3️⃣ Willingness to Pay for Climate Policy (<code>ccSolve*</code>)<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Willingness-to-Pay-for-Climate-Policy-(ccSolve*)">¶</a></h4><p>These variables assess <strong>how much financial support people are willing to contribute to climate policies</strong></p>
+<h4 id="3-willingness-to-pay-for-climate-policy-ccsolve">3️⃣ Willingness to Pay for Climate Policy (`ccSolve*`)</h4>
+These variables assess **how much financial support people are willing to contribute to climate policies**
+
 <table>
 <thead>
 <tr>
@@ -8305,11 +8461,15 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </tr>
 </tbody>
 </table>
-<h5 id="%F0%9F%93%9D-Key-Insights">📝 Key Insights<a class="anchor-link" href="#%F0%9F%93%9D-Key-Insights">¶</a></h5><p>✅ <strong>The higher the cost, the lower the willingness to support policies</strong><br/>
-✅ <strong>Most respondents refuse to pay <code>$100/month</code> (<code>ccSolve100 = 1.45</code>) but are more open to <code>$1/month</code> (<code>ccSolve1 = 3.45</code>)</strong><br/>
-✅ <strong>Even at <code>$50/month</code>, median support remains low (<code>1.5</code>)</strong></p>
+<h5 id="key-insights">📝 Key Insights</h5>
+✅ **The higher the cost, the lower the willingness to support policies**  
+✅ **Most respondents refuse to pay `$100/month` (`ccSolve100 = 1.45`) but are more open to `$1/month` (`ccSolve1 = 3.45`)**  
+✅ **Even at `$50/month`, median support remains low (`1.5`)**  
+
 <hr/>
-<h4 id="4%EF%B8%8F%E2%83%A3-Climate-Policy-Support-(cc_pol_*)">4️⃣ Climate Policy Support (<code>cc_pol_*</code>)<a class="anchor-link" href="#4%EF%B8%8F%E2%83%A3-Climate-Policy-Support-(cc_pol_*)">¶</a></h4><p>These variables capture <strong>support for climate-related regulations and policies</strong></p>
+<h4 id="4-climate-policy-support-cc-pol">4️⃣ Climate Policy Support (`cc_pol_*`)</h4>
+These variables capture **support for climate-related regulations and policies**
+
 <table>
 <thead>
 <tr>
@@ -8349,10 +8509,14 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </tr>
 </tbody>
 </table>
-<h5 id="%F0%9F%93%9D-Key-Insights">📝 Key Insights<a class="anchor-link" href="#%F0%9F%93%9D-Key-Insights">¶</a></h5><p>✅ <strong>Support for stricter car emissions standards (<code>cc_pol_car = 3.71</code>) is higher than a carbon tax (<code>cc_pol_tax = 3.19</code>)</strong><br/>
-✅ <strong>Carbon taxes are more polarizing, with some strong support but also strong opposition</strong></p>
+<h5 id="key-insights">📝 Key Insights</h5>
+✅ **Support for stricter car emissions standards (`cc_pol_car = 3.71`) is higher than a carbon tax (`cc_pol_tax = 3.19`)**  
+✅ **Carbon taxes are more polarizing, with some strong support but also strong opposition**  
+
 <hr/>
-<h4 id="5%EF%B8%8F%E2%83%A3-Political-Identity-&amp;-Ideology-(pol_party,-pol_ideology)">5️⃣ Political Identity &amp; Ideology (<code>pol_party</code>, <code>pol_ideology</code>)<a class="anchor-link" href="#5%EF%B8%8F%E2%83%A3-Political-Identity-&amp;-Ideology-(pol_party,-pol_ideology)">¶</a></h4><p>These variables measure <strong>political party identification and ideological orientation</strong> of respondents.</p>
+<h4 id="5-political-identity-ideology-pol-party-pol-ideology">5️⃣ Political Identity &amp; Ideology (`pol_party`, `pol_ideology`)</h4>
+These variables measure **political party identification and ideological orientation** of respondents.
+
 <table>
 <thead>
 <tr>
@@ -8392,14 +8556,19 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </tr>
 </tbody>
 </table>
-<h5 id="%F0%9F%93%9D-Key-Insights">📝 Key Insights<a class="anchor-link" href="#%F0%9F%93%9D-Key-Insights">¶</a></h5><p>✅ <strong>Political party identification (<code>pol_party</code>) is widely distributed</strong>, with a mean of <strong>3.17</strong>, indicating a balance between Republican (1), Independent (3) and Democrat (5)<br/>
-✅ <strong>The median political party score is 3</strong>, meaning that a large portion of respondents identify as Independents<br/>
-✅ <strong>Political ideology (<code>pol_ideology</code>) has a mean of 2.89</strong>, suggesting a <strong>slightly left-leaning</strong> overall distribution but still centrist<br/>
-✅ <strong>The quartiles show that many respondents cluster around the center (<code>3</code>), with fewer extreme values (<code>1</code> for very conservative, <code>5</code> for very liberal)</strong></p>
+<h5 id="key-insights">📝 Key Insights</h5>
+✅ **Political party identification (`pol_party`) is widely distributed**, with a mean of **3.17**, indicating a balance between Republican (1), Independent (3) and Democrat (5)  
+✅ **The median political party score is 3**, meaning that a large portion of respondents identify as Independents  
+✅ **Political ideology (`pol_ideology`) has a mean of 2.89**, suggesting a **slightly left-leaning** overall distribution but still centrist  
+✅ **The quartiles show that many respondents cluster around the center (`3`), with fewer extreme values (`1` for very conservative, `5` for very liberal)**  
+
 <hr/>
-<h4 id="6%EF%B8%8F%E2%83%A3-Overall-Key-Takeaways">6️⃣ Overall Key Takeaways<a class="anchor-link" href="#6%EF%B8%8F%E2%83%A3-Overall-Key-Takeaways">¶</a></h4><p>✅ <strong>Climate change perception is generally high, especially on global impact</strong><br/>
-✅ <strong>Support for climate policy depends on financial cost</strong> — higher costs reduce support<br/>
-✅ <strong>Regulatory measures (e.g., emissions standards) receive more support than economic measures (e.g., carbon tax)</strong></p>
+<h4 id="6-overall-key-takeaways">6️⃣ Overall Key Takeaways</h4>
+✅ **Climate change perception is generally high, especially on global impact**  
+✅ **Support for climate policy depends on financial cost** — higher costs reduce support  
+✅ **Regulatory measures (e.g., emissions standards) receive more support than economic measures (e.g., carbon tax)**  
+
+
 </div>
 </div>
 </div>
@@ -8410,7 +8579,7 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Numerical-Data-Distribution">Numerical Data Distribution<a class="anchor-link" href="#Numerical-Data-Distribution">¶</a></h3>
+<h3 id="numerical-data-distribution">Numerical Data Distribution</h3>
 </div>
 </div>
 </div>
@@ -8470,48 +8639,35 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="%F0%9F%94%8D-Key-Observations">🔍 Key Observations<a class="anchor-link" href="#%F0%9F%94%8D-Key-Observations">¶</a></h4><ol>
-<li><strong>Categorical-Like Distribution:</strong><ul>
-<li>Most variables have <strong>discrete values (1 to 5)</strong>, because we standardized them to 1-5 Likert scale responses</li>
-<li>Many variables show <strong>skewed distributions</strong>, suggesting <strong>strong opinions</strong> in one direction</li>
-</ul>
-</li>
-<li><strong>Support for Climate Policies (<code>ccSolve*</code> variables)</strong><ul>
-<li><strong><code>ccSolve100</code>, <code>ccSolve50</code>, <code>ccSolve10</code>, <code>ccSolve1</code>, <code>ccSolve0</code></strong>:<ul>
-<li><strong>Higher costs (<code>ccSolve100</code>) → More disapproval (peaked at 1)</strong></li>
-<li><strong>Lower costs (<code>ccSolve1</code>, <code>ccSolve0</code>) → More balanced responses</strong></li>
-<li>This suggests people are <strong>more willing to contribute when the personal cost is lower</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Climate Change Perception (<code>cc4_*</code> variables)</strong><ul>
-<li><strong><code>cc4_world</code>, <code>cc4_poorUS</code>, <code>cc4_wealthUS</code></strong>:<ul>
-<li><strong>More responses at 4-5</strong>, showing <strong>strong concerns about climate change</strong></li>
-<li>Differences in perception depending on whether the impact is on <strong>wealthy vs. poor communities</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Policy Support Variables (<code>cc_pol_*</code>)</strong><ul>
-<li><strong><code>cc_pol_tax</code> (carbon tax) and <code>cc_pol_car</code> (emission standards)</strong>:<ul>
-<li><strong>Peak responses at 3-5</strong>, meaning <strong>moderate to strong support for environmental policies</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Political Alignment and Ideology (<code>pol_party</code>, <code>pol_ideology</code>)</strong><ul>
-<li><strong><code>pol_party</code> (political affiliation) is widely distributed</strong>, with peaks at <strong>Republican (1), Independent (3), and Democrat (5)</strong></li>
-<li><strong>Some respondents identify as Independents (3), but many lean Republican (2) or Democrat (4)</strong></li>
-<li><strong><code>pol_ideology</code> (self-reported) centers around 3 (moderate), with fewer extreme conservatives (1) or extreme liberals (5)</strong></li>
-</ul>
-</li>
-</ol>
+<h4 id="key-observations">🔍 Key Observations</h4>
+1. **Categorical-Like Distribution:**
+   - Most variables have **discrete values (1 to 5)**, because we standardized them to 1-5 Likert scale responses
+   - Many variables show **skewed distributions**, suggesting **strong opinions** in one direction
+2. **Support for Climate Policies (`ccSolve*` variables)**
+   - **`ccSolve100`, `ccSolve50`, `ccSolve10`, `ccSolve1`, `ccSolve0`**:
+     - **Higher costs (`ccSolve100`) → More disapproval (peaked at 1)**
+     - **Lower costs (`ccSolve1`, `ccSolve0`) → More balanced responses**
+     - This suggests people are **more willing to contribute when the personal cost is lower**
+3. **Climate Change Perception (`cc4_*` variables)**
+   - **`cc4_world`, `cc4_poorUS`, `cc4_wealthUS`**:
+     - **More responses at 4-5**, showing **strong concerns about climate change**
+     - Differences in perception depending on whether the impact is on **wealthy vs. poor communities**
+4. **Policy Support Variables (`cc_pol_*`)**
+   - **`cc_pol_tax` (carbon tax) and `cc_pol_car` (emission standards)**:
+     - **Peak responses at 3-5**, meaning **moderate to strong support for environmental policies**
+5. **Political Alignment and Ideology (`pol_party`, `pol_ideology`)**  
+   - **`pol_party` (political affiliation) is widely distributed**, with peaks at **Republican (1), Independent (3), and Democrat (5)**  
+   - **Some respondents identify as Independents (3), but many lean Republican (2) or Democrat (4)**  
+   - **`pol_ideology` (self-reported) centers around 3 (moderate), with fewer extreme conservatives (1) or extreme liberals (5)**  
+
 <hr/>
-<h4 id="%F0%9F%93%8C-Key-Takeways">📌 Key Takeways<a class="anchor-link" href="#%F0%9F%93%8C-Key-Takeways">¶</a></h4><p>✅ <strong>Higher costs reduce climate policy support (<code>ccSolve100</code> vs. <code>ccSolve0</code>)</strong><br/>
-✅ <strong>People show more concern about climate change in general (<code>cc4_world</code>) than its effect on wealthier communities (<code>cc4_wealthUS</code>)</strong><br/>
-✅ <strong>Support for policy interventions (tax, emissions) is moderate to high</strong><br/>
-✅ <strong>Political party affiliation and ideology are related but not always identical; many respondents may identify with a party for other reasons rather than strong ideological alignment</strong></p>
+<h4 id="key-takeways">📌 Key Takeways</h4>
+✅ **Higher costs reduce climate policy support (`ccSolve100` vs. `ccSolve0`)**  
+✅ **People show more concern about climate change in general (`cc4_world`) than its effect on wealthier communities (`cc4_wealthUS`)**  
+✅ **Support for policy interventions (tax, emissions) is moderate to high**  
+✅ **Political party affiliation and ideology are related but not always identical; many respondents may identify with a party for other reasons rather than strong ideological alignment**  
+
+
 </div>
 </div>
 </div>
@@ -8522,7 +8678,7 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Spearman-Correlation-Matrix">Spearman Correlation Matrix<a class="anchor-link" href="#Spearman-Correlation-Matrix">¶</a></h3>
+<h3 id="spearman-correlation-matrix">Spearman Correlation Matrix</h3>
 </div>
 </div>
 </div>
@@ -8580,13 +8736,12 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>The correlation matrix visualizes relationships between variables using <strong>Spearman’s Rank Correlation</strong>. The scale ranges from <strong>-1 (perfect negative correlation)</strong> to <strong>+1 (perfect positive correlation)</strong>  (i.e., how well one variable can be described as an increasing or decreasing function of another).</p>
 <hr/>
-<h4 id="%F0%9F%94%8D-Key-Observations">🔍 Key Observations<a class="anchor-link" href="#%F0%9F%94%8D-Key-Observations">¶</a></h4><ol>
-<li><p><strong>Strong Correlations Among Climate Change Perceptions (<code>cc4_*</code> variables)</strong></p>
-<ul>
-<li><strong><code>cc4_world</code> (concern for climate change globally) has high correlations with <code>cc4_poorUS</code> (0.79) and <code>cc4_comm</code> (0.71)</strong>, suggesting that those who worry about global climate change also recognize its impact on their local community and on poor communities</li>
-<li><strong><code>cc4_famheal</code> (climate impact on family health) has the strongest correlation with <code>cc4_comm</code> (0.81)</strong>, meaning those who believe climate change affects their family’s health also believe that it affects their local community</li>
-</ul>
-</li>
+<h4 id="key-observations">🔍 Key Observations</h4>
+1. **Strong Correlations Among Climate Change Perceptions (`cc4_*` variables)**  
+   - **`cc4_world` (concern for climate change globally) has high correlations with `cc4_poorUS` (0.79) and `cc4_comm` (0.71)**, suggesting that those who worry about global climate change also recognize its impact on their local community and on poor communities
+   - **`cc4_famheal` (climate impact on family health) has the strongest correlation with `cc4_comm` (0.81)**, meaning those who believe climate change affects their family’s health also believe that it affects their local community
+
+<ol start="2">
 <li><p><strong>Support for Climate Solutions Decreases with Higher Costs (<code>ccSolve*</code> variables)</strong></p>
 <ul>
 <li><strong><code>ccSolve100</code> (willingness to support climate action at 100$ per month) is positively correlated with other <code>ccSolve</code> variables (e.g., <code>ccSolve0</code> = 0.64, <code>ccSolve1</code> = 0.69)</strong></li>
@@ -8608,10 +8763,13 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </li>
 </ol>
 <hr/>
-<h4 id="%F0%9F%93%8C-Key-Takeaways">📌 Key Takeaways<a class="anchor-link" href="#%F0%9F%93%8C-Key-Takeaways">¶</a></h4><p>✅ <strong>Stronger concern for climate change is linked to greater support for policies like carbon taxes and emission standards</strong><br/>
-✅ <strong>People are more willing to support climate solutions when the financial burden is lower (<code>ccSolve0</code> vs. <code>ccSolve100</code>)</strong><br/>
-✅ <strong>Democrats and liberals (<code>pol_party</code>, <code>pol_ideology</code>) show more support for climate policies than Republicans and conservatives</strong><br/>
-✅ <strong>People's concern about climate change is closely connected to their views on health, the economy, and local impact</strong></p>
+<h4 id="key-takeaways">📌 Key Takeaways</h4>
+✅ **Stronger concern for climate change is linked to greater support for policies like carbon taxes and emission standards**  
+✅ **People are more willing to support climate solutions when the financial burden is lower (`ccSolve0` vs. `ccSolve100`)**  
+✅ **Democrats and liberals (`pol_party`, `pol_ideology`) show more support for climate policies than Republicans and conservatives**  
+✅ **People's concern about climate change is closely connected to their views on health, the economy, and local impact**  
+
+
 </div>
 </div>
 </div>
@@ -8622,7 +8780,7 @@ pol_party has been transformed into a 1-5 Likert scale based on pol_lean
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Exploratory-Factor-Analysis-(EFA)">Exploratory Factor Analysis (EFA)<a class="anchor-link" href="#Exploratory-Factor-Analysis-(EFA)">¶</a></h2>
+<h2 id="exploratory-factor-analysis-efa">Exploratory Factor Analysis (EFA)</h2>
 </div>
 </div>
 </div>
@@ -8774,12 +8932,16 @@ Eigenvalues:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="1%EF%B8%8F%E2%83%A3-Optimal-Number-of-Factors">1️⃣ Optimal Number of Factors<a class="anchor-link" href="#1%EF%B8%8F%E2%83%A3-Optimal-Number-of-Factors">¶</a></h4><p>Using <strong>Parallel Analysis and Eigenvalues &gt; 1</strong>, we determined that the optimal number of factors is <strong>3</strong></p>
+<h4 id="1-optimal-number-of-factors">1️⃣ Optimal Number of Factors</h4>
+Using **Parallel Analysis and Eigenvalues &gt; 1**, we determined that the optimal number of factors is **3**
+
 <ul>
 <li><strong>Eigenvalues greater than 1</strong> suggest that three factors explain a meaningful amount of variance</li>
 <li><strong>Scree plot analysis</strong> confirmed this finding</li>
 </ul>
-<h4 id="2%EF%B8%8F%E2%83%A3-Factor-Loadings">2️⃣ Factor Loadings<a class="anchor-link" href="#2%EF%B8%8F%E2%83%A3-Factor-Loadings">¶</a></h4><p>Factor loadings indicate <strong>how strongly each variable relates to a factor</strong>. Higher values mean a stronger relationship.</p>
+<h4 id="2-factor-loadings">2️⃣ Factor Loadings</h4>
+Factor loadings indicate **how strongly each variable relates to a factor**. Higher values mean a stronger relationship.
+
 <table>
 <thead>
 <tr>
@@ -8882,32 +9044,29 @@ Eigenvalues:
 </tr>
 </tbody>
 </table>
-<h4 id="3%EF%B8%8F%E2%83%A3-Factor-Interpretations">3️⃣ Factor Interpretations<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Factor-Interpretations">¶</a></h4><ul>
-<li><strong>Factor 1: Policy Support</strong><ul>
-<li>High loadings on <strong>ccSolve100, ccSolve50, ccSolve10, ccSolve1, and ccSolve0</strong></li>
-<li>Represents <strong>public willingness to financially support climate policies</strong></li>
-</ul>
-</li>
-<li><strong>Factor 2: Climate Impact Perception</strong><ul>
-<li>High loadings on <strong>cc4_world, cc4_wealthUS, cc4_poorUS, cc4_comm, cc4_famheal, and cc4_famecon</strong></li>
-<li>Represents <strong>perceived harm of climate change</strong> on different levels of society</li>
-</ul>
-</li>
-<li><strong>Factor 3: Political &amp; Economic Attitudes</strong><ul>
-<li>High loadings on <strong>cc_pol_tax, cc_pol_car, pol_party, and pol_ideology</strong></li>
-<li>Represents <strong>support for economic and regulatory policies like carbon taxes and emission standards, as well as political alignment</strong></li>
-<li><strong><code>pol_party</code> and <code>pol_ideology</code> loading onto this factor suggest that political identity is closely tied to support for economic and regulatory climate policies</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="4%EF%B8%8F%E2%83%A3-Eigenvalues">4️⃣ Eigenvalues<a class="anchor-link" href="#4%EF%B8%8F%E2%83%A3-Eigenvalues">¶</a></h4><ul>
-<li>The first <strong>three</strong> factors have eigenvalues <strong>&gt; 1</strong>, meaning they explain a significant amount of variance</li>
-<li>Factors beyond the <strong>third</strong> contribute little additional variance</li>
-</ul>
-<h4 id="5%EF%B8%8F%E2%83%A3-Key-Insights">5️⃣ Key Insights<a class="anchor-link" href="#5%EF%B8%8F%E2%83%A3-Key-Insights">¶</a></h4><p>✅ Public opinion on climate policies follows three distinct dimensions<br/>
-✅ Political ideology is a significant predictor of economic and regulatory climate policy attitudes<br/>
-✅ People differentiate between acknowledging climate impact (Factor 2) and supporting economic solutions (Factor 3)<br/>
-✅ Willingness to pay (<code>ccSolve*</code>) remains a standalone factor (Factor 1), indicating it is more influenced by personal cost considerations than ideology</p>
+<h4 id="3-factor-interpretations">3️⃣ Factor Interpretations</h4>
+- **Factor 1: Policy Support**
+  - High loadings on **ccSolve100, ccSolve50, ccSolve10, ccSolve1, and ccSolve0**
+  - Represents **public willingness to financially support climate policies**
+- **Factor 2: Climate Impact Perception**
+  - High loadings on **cc4_world, cc4_wealthUS, cc4_poorUS, cc4_comm, cc4_famheal, and cc4_famecon**
+  - Represents **perceived harm of climate change** on different levels of society
+- **Factor 3: Political &amp; Economic Attitudes**
+  - High loadings on **cc_pol_tax, cc_pol_car, pol_party, and pol_ideology**
+  - Represents **support for economic and regulatory policies like carbon taxes and emission standards, as well as political alignment**
+  - **`pol_party` and `pol_ideology` loading onto this factor suggest that political identity is closely tied to support for economic and regulatory climate policies**  
+
+<h4 id="4-eigenvalues">4️⃣ Eigenvalues</h4>
+- The first **three** factors have eigenvalues **&gt; 1**, meaning they explain a significant amount of variance
+- Factors beyond the **third** contribute little additional variance
+
+<h4 id="5-key-insights">5️⃣ Key Insights</h4>
+✅ Public opinion on climate policies follows three distinct dimensions  
+✅ Political ideology is a significant predictor of economic and regulatory climate policy attitudes  
+✅ People differentiate between acknowledging climate impact (Factor 2) and supporting economic solutions (Factor 3)  
+✅ Willingness to pay (`ccSolve*`) remains a standalone factor (Factor 1), indicating it is more influenced by personal cost considerations than ideology  
+
+
 </div>
 </div>
 </div>
@@ -8967,7 +9126,9 @@ Eigenvalues:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="1%EF%B8%8F%E2%83%A3-Factor-Loadings">1️⃣ Factor Loadings<a class="anchor-link" href="#1%EF%B8%8F%E2%83%A3-Factor-Loadings">¶</a></h4><p>Factor loadings represent <strong>how strongly each variable is associated with the extracted factors</strong> from our <strong>Exploratory Factor Analysis (EFA)</strong></p>
+<h4 id="1-factor-loadings">1️⃣ Factor Loadings</h4>
+Factor loadings represent **how strongly each variable is associated with the extracted factors** from our **Exploratory Factor Analysis (EFA)**
+
 <ul>
 <li><strong>Factor loadings range from -1 to 1</strong>:<ul>
 <li><strong>Closer to +1 or -1</strong> → Strong association</li>
@@ -8981,7 +9142,9 @@ Eigenvalues:
 </li>
 </ul>
 <hr/>
-<h4 id="2%EF%B8%8F%E2%83%A3-Interpretation-of-the-Factor-Loadings-Heatmap">2️⃣ Interpretation of the Factor Loadings Heatmap<a class="anchor-link" href="#2%EF%B8%8F%E2%83%A3-Interpretation-of-the-Factor-Loadings-Heatmap">¶</a></h4><p>The heatmap visualizes <strong>three distinct factors</strong> extracted from the dataset</p>
+<h4 id="2-interpretation-of-the-factor-loadings-heatmap">2️⃣ Interpretation of the Factor Loadings Heatmap</h4>
+The heatmap visualizes **three distinct factors** extracted from the dataset
+
 <p><strong>🟠 Factor 1: Policy Support</strong></p>
 <ul>
 <li><strong>High loadings on</strong>: <code>ccSolve100 (0.82)</code>, <code>ccSolve50 (1.00)</code>, <code>ccSolve10 (0.99)</code>, <code>ccSolve1 (0.78)</code>, <code>ccSolve0 (0.56)</code></li>
@@ -9012,10 +9175,13 @@ Eigenvalues:
 </li>
 </ul>
 <hr/>
-<h4 id="3%EF%B8%8F%E2%83%A3-Key-Takeaways">3️⃣ Key Takeaways<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Key-Takeaways">¶</a></h4><p>✅ <strong>Public opinion on climate policies follows three distinct dimensions</strong><br/>
-✅ <strong>Political ideology is a key predictor of economic climate policy attitudes</strong><br/>
-✅ <strong>Willingness to pay (<code>ccSolve</code>) is a separate factor, suggesting financial self-interest drives personal contributions, rather than ideology</strong><br/>
-✅ <strong>Support for regulatory policies (Factor 3) is deeply political, reinforcing polarization in climate policy attitudes</strong></p>
+<h4 id="3-key-takeaways">3️⃣ Key Takeaways</h4>
+✅ **Public opinion on climate policies follows three distinct dimensions**  
+✅ **Political ideology is a key predictor of economic climate policy attitudes**  
+✅ **Willingness to pay (`ccSolve`) is a separate factor, suggesting financial self-interest drives personal contributions, rather than ideology**  
+✅ **Support for regulatory policies (Factor 3) is deeply political, reinforcing polarization in climate policy attitudes**  
+
+
 </div>
 </div>
 </div>
@@ -9026,7 +9192,7 @@ Eigenvalues:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Principal-Component-Analysis-(PCA)">Principal Component Analysis (PCA)<a class="anchor-link" href="#Principal-Component-Analysis-(PCA)">¶</a></h3>
+<h3 id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h3>
 </div>
 </div>
 </div>
@@ -9139,23 +9305,26 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="1%EF%B8%8F%E2%83%A3-PCA">1️⃣ PCA<a class="anchor-link" href="#1%EF%B8%8F%E2%83%A3-PCA">¶</a></h4><p>Principal Component Analysis (PCA) helps <strong>reduce dimensionality</strong> while preserving as much variance as possible. Each <strong>Principal Component (PC)</strong> captures a percentage of the total variance in the dataset.</p>
-<ul>
-<li><strong>PC1 captures the most variance</strong>, followed by PC2, PC3, and so on</li>
-<li><strong>The goal is to retain only the most meaningful components</strong> while reducing complexity</li>
-</ul>
+<h4 id="1-pca">1️⃣ PCA</h4>
+Principal Component Analysis (PCA) helps **reduce dimensionality** while preserving as much variance as possible. Each **Principal Component (PC)** captures a percentage of the total variance in the dataset.
+- **PC1 captures the most variance**, followed by PC2, PC3, and so on
+- **The goal is to retain only the most meaningful components** while reducing complexity
+
 <hr/>
-<h4 id="2%EF%B8%8F%E2%83%A3-Explained-Variance-Ratios">2️⃣ Explained Variance Ratios<a class="anchor-link" href="#2%EF%B8%8F%E2%83%A3-Explained-Variance-Ratios">¶</a></h4><pre><code>[0.4827, 0.1768, 0.0870, 0.0592, 0.0435, 0.0343, 0.0247, 0.0237, 0.0188, 0.0152, 0.0128, 0.0096, 0.0086, 0.0022, 0.0008]
-</code></pre>
-<ul>
-<li><strong>PC1 explains 48.27% of the total variance</strong> (dominant component)</li>
-<li><strong>PC2 explains 17.68%</strong>, adding substantial value</li>
-<li><strong>PC3-PC5 together contribute ~18.9%</strong>, meaning they still hold valuable information</li>
-</ul>
+<h4 id="2-explained-variance-ratios">2️⃣ Explained Variance Ratios</h4>
+```
+[0.4827, 0.1768, 0.0870, 0.0592, 0.0435, 0.0343, 0.0247, 0.0237, 0.0188, 0.0152, 0.0128, 0.0096, 0.0086, 0.0022, 0.0008]
+```
+- **PC1 explains 48.27% of the total variance** (dominant component)
+- **PC2 explains 17.68%**, adding substantial value
+- **PC3-PC5 together contribute ~18.9%**, meaning they still hold valuable information
+
 <p>The first 5 principal components together explain 84.92% of the total variance in the dataset. This suggests that using these five components would retain most of the important information while significantly reducing dimensionality. Beyond PC5, the rest principal components can be ignored.</p>
 <p>📌 <strong>Key takeaway:</strong> <strong>Keeping the first 3-5 components</strong> is optimal for balancing dimensionality reduction and retaining information</p>
 <hr/>
-<h4 id="3%EF%B8%8F%E2%83%A3-Visualizing-PCA:-Scree-Plot">3️⃣ Visualizing PCA: Scree Plot<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Visualizing-PCA:-Scree-Plot">¶</a></h4><p>The <strong>scree plot</strong> helps determine how many components to retain. The <strong>labels on each point</strong> indicate the explained variance</p>
+<h4 id="3-visualizing-pca-scree-plot">3️⃣ Visualizing PCA: Scree Plot</h4>
+The **scree plot** helps determine how many components to retain. The **labels on each point** indicate the explained variance
+
 <ul>
 <li><strong>Sharp drop after PC1 and PC2</strong>, indicating they hold most of the variance</li>
 <li><strong>The "elbow" appears around PC3 and PC5</strong>, suggesting these components still contribute meaningful information</li>
@@ -9215,25 +9384,25 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="PCA-Variable-Contributions-Heatmap">PCA Variable Contributions Heatmap<a class="anchor-link" href="#PCA-Variable-Contributions-Heatmap">¶</a></h4><p>This heatmap visualizes <strong>how much each variable contributes to each Principal Component (PC)</strong>. The values represent <strong>loadings</strong>, which indicate how strongly each original variable is associated with a given component</p>
+<h4 id="pca-variable-contributions-heatmap">PCA Variable Contributions Heatmap</h4>
+This heatmap visualizes **how much each variable contributes to each Principal Component (PC)**. The values represent **loadings**, which indicate how strongly each original variable is associated with a given component
+
 <hr/>
-<h5 id="1%EF%B8%8F%E2%83%A3-Understanding-the-Heatmap">1️⃣ Understanding the Heatmap<a class="anchor-link" href="#1%EF%B8%8F%E2%83%A3-Understanding-the-Heatmap">¶</a></h5><ul>
-<li><strong>Rows:</strong> Represent the original variables in the dataset</li>
-<li><strong>Columns:</strong> Represent the Principal Components (PCs)</li>
-<li><strong>Cell Values:</strong> The <strong>loadings</strong>, showing how much a variable contributes to each component</li>
-<li><strong>Color Gradient:</strong><ul>
-<li><strong>Red/Orange (High Positive Contribution)</strong> → Strong positive association</li>
-<li><strong>Blue (High Negative Contribution)</strong> → Strong negative association</li>
-<li><strong>Yellow (~0 Contribution)</strong> → The variable has little influence on that component</li>
-</ul>
-</li>
-</ul>
+<h5 id="1-understanding-the-heatmap">1️⃣ Understanding the Heatmap</h5>
+- **Rows:** Represent the original variables in the dataset
+- **Columns:** Represent the Principal Components (PCs)
+- **Cell Values:** The **loadings**, showing how much a variable contributes to each component
+- **Color Gradient:**
+  - **Red/Orange (High Positive Contribution)** → Strong positive association
+  - **Blue (High Negative Contribution)** → Strong negative association
+  - **Yellow (~0 Contribution)** → The variable has little influence on that component
+
 <hr/>
-<h5 id="2%EF%B8%8F%E2%83%A3-Key-Observations">2️⃣ Key Observations<a class="anchor-link" href="#2%EF%B8%8F%E2%83%A3-Key-Observations">¶</a></h5><p><strong>🟠 PC1 (First Principal Component)</strong></p>
-<ul>
-<li><strong>High positive loadings</strong> for <code>cc4_world (0.82)</code>, <code>cc4_poorUS (0.80)</code>, <code>cc4_comm (0.78)</code>, and <code>cc4_famheal (0.72)</code></li>
-<li><strong>Interpretation:</strong> PC1 is <strong>strongly influenced by climate change perception variables (<code>cc4_*</code>)</strong>, suggesting this component <strong>captures beliefs about the impact of climate change</strong></li>
-</ul>
+<h5 id="2-key-observations">2️⃣ Key Observations</h5>
+**🟠 PC1 (First Principal Component)**
+- **High positive loadings** for `cc4_world (0.82)`, `cc4_poorUS (0.80)`, `cc4_comm (0.78)`, and `cc4_famheal (0.72)`
+- **Interpretation:** PC1 is **strongly influenced by climate change perception variables (`cc4_*`)**, suggesting this component **captures beliefs about the impact of climate change**
+
 <p><strong>🔴 PC2 (Second Principal Component)</strong></p>
 <ul>
 <li><strong>Strong contributions from</strong> <code>ccSolve100 (0.61)</code>, <code>ccSolve50 (0.68)</code>, <code>ccSolve10 (0.65)</code>, <code>ccSolve1 (0.52)</code></li>
@@ -9245,10 +9414,13 @@ PCA Transformed Data:
 <li><strong>Interpretation:</strong> PC3 seems to represent <strong>the polarization in climate policy preferences</strong></li>
 </ul>
 <hr/>
-<h5 id="3%EF%B8%8F%E2%83%A3-Takeaways">3️⃣ Takeaways<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Takeaways">¶</a></h5><p>✅ <strong>Climate change perception (<code>cc4_*</code>) is the most dominant in PC1</strong><br/>
-✅ <strong>Financial willingness to support policies (<code>ccSolve_*</code>) is captured strongly in PC2</strong><br/>
-✅ <strong>Economic and regulatory policies (<code>cc_pol_*</code>) are closely tied to political identity (<code>pol_*</code>) in PC3</strong><br/>
-✅ <strong>Other PCs contribute very little variance and may not be as significant</strong></p>
+<h5 id="3-takeaways">3️⃣ Takeaways</h5>
+✅ **Climate change perception (`cc4_*`) is the most dominant in PC1**  
+✅ **Financial willingness to support policies (`ccSolve_*`) is captured strongly in PC2**  
+✅ **Economic and regulatory policies (`cc_pol_*`) are closely tied to political identity (`pol_*`) in PC3**  
+✅ **Other PCs contribute very little variance and may not be as significant**
+
+
 </div>
 </div>
 </div>
@@ -9306,20 +9478,22 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Cos%C2%B2-(Squared-Cosine)-Heatmap">Cos² (Squared Cosine) Heatmap<a class="anchor-link" href="#Cos%C2%B2-(Squared-Cosine)-Heatmap">¶</a></h4><p>The <strong>Cos² values</strong> measure the <strong>quality of representation</strong> of each variable on the first five principal components (PCs). Higher Cos² values (closer to 1) indicate that a variable is well represented by a given principal component</p>
+<h4 id="cos-squared-cosine-heatmap">Cos² (Squared Cosine) Heatmap</h4>
+The **Cos² values** measure the **quality of representation** of each variable on the first five principal components (PCs). Higher Cos² values (closer to 1) indicate that a variable is well represented by a given principal component
+
 <hr/>
-<h4 id="1%EF%B8%8F%E2%83%A3-Understanding-Cos%C2%B2-Values">1️⃣ Understanding Cos² Values<a class="anchor-link" href="#1%EF%B8%8F%E2%83%A3-Understanding-Cos%C2%B2-Values">¶</a></h4><ul>
-<li><strong>Cos² measures how well a variable is captured by a principal component</strong></li>
-<li><strong>Higher values (lighter blue) mean a stronger association</strong> between the variable and the component</li>
-<li><strong>Lower values (darker blue) mean the variable is not well represented by that component</strong></li>
-<li>The sum of Cos² values across all components for a variable equals <strong>1</strong></li>
-</ul>
+<h4 id="1-understanding-cos-values">1️⃣ Understanding Cos² Values</h4>
+- **Cos² measures how well a variable is captured by a principal component**
+- **Higher values (lighter blue) mean a stronger association** between the variable and the component
+- **Lower values (darker blue) mean the variable is not well represented by that component**
+- The sum of Cos² values across all components for a variable equals **1**
+
 <hr/>
-<h4 id="2%EF%B8%8F%E2%83%A3-Key-Observations">2️⃣ Key Observations<a class="anchor-link" href="#2%EF%B8%8F%E2%83%A3-Key-Observations">¶</a></h4><p><strong>🔵 PC1 (First Principal Component)</strong></p>
-<ul>
-<li><strong>Moderate representation for:</strong> <code>cc4_world (0.092)</code>, <code>cc4_poorUS (0.088)</code>, <code>ccSolve0 (0.083)</code>, <code>ccSolve1 (0.082)</code>, <code>cc_comm (0.084)</code></li>
-<li><strong>Interpretation:</strong> PC1 somewhat represents <strong>climate change perception variables and willingness to support climate policies</strong></li>
-</ul>
+<h4 id="2-key-observations">2️⃣ Key Observations</h4>
+**🔵 PC1 (First Principal Component)**
+- **Moderate representation for:** `cc4_world (0.092)`, `cc4_poorUS (0.088)`, `ccSolve0 (0.083)`, `ccSolve1 (0.082)`, `cc_comm (0.084)`
+- **Interpretation:** PC1 somewhat represents **climate change perception variables and willingness to support climate policies**
+
 <p><strong>🔵 PC2 (Second Principal Component)</strong></p>
 <ul>
 <li><strong>Higher contributions from:</strong> <code>ccSolve100 (0.14)</code>, <code>ccSolve50 (0.17)</code>, <code>ccSolve10 (0.16)</code>, <code>ccSolve1 (0.10)</code></li>
@@ -9337,10 +9511,13 @@ PCA Transformed Data:
 <li><strong>Interpretation:</strong> PC4 and PC5 explain much less variance, meaning they are <strong>less meaningful for capturing the dataset's structure</strong></li>
 </ul>
 <hr/>
-<h4 id="3%EF%B8%8F%E2%83%A3-Takeaways">3️⃣ Takeaways<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Takeaways">¶</a></h4><p>✅ <strong>PC1 and PC2 are the most meaningful dimensions</strong>, capturing perceptions of climate change and financial support for policies<br/>
-✅ <strong>PC3 focuses on  political identity (<code>pol_*</code>) with economic policy attitudes (<code>cc_pol_car</code>)</strong><br/>
-✅ <strong>Some variables are weakly represented (low Cos²), meaning they may not be strongly linked to any single component</strong><br/>
-✅ <strong>If a variable has low Cos² across all PCs, it might not contribute significantly to the dataset’s variance:</strong> <code>cc4_comm</code>, <code>cc4_famheal</code>, <code>cc4_wealthUS</code></p>
+<h4 id="3-takeaways">3️⃣ Takeaways</h4>
+✅ **PC1 and PC2 are the most meaningful dimensions**, capturing perceptions of climate change and financial support for policies  
+✅ **PC3 focuses on  political identity (`pol_*`) with economic policy attitudes (`cc_pol_car`)**  
+✅ **Some variables are weakly represented (low Cos²), meaning they may not be strongly linked to any single component**  
+✅ **If a variable has low Cos² across all PCs, it might not contribute significantly to the dataset’s variance:** `cc4_comm`, `cc4_famheal`, `cc4_wealthUS`  
+
+
 </div>
 </div>
 </div>
@@ -9351,7 +9528,7 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Independent-Component-Analysis-(ICA)">Independent Component Analysis (ICA)<a class="anchor-link" href="#Independent-Component-Analysis-(ICA)">¶</a></h2>
+<h2 id="independent-component-analysis-ica">Independent Component Analysis (ICA)</h2>
 </div>
 </div>
 </div>
@@ -9422,32 +9599,30 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Independent-Component-Analysis-(ICA)-Weight-Matrix-Heatmap"><strong>Independent Component Analysis (ICA) Weight Matrix Heatmap</strong><a class="anchor-link" href="#Independent-Component-Analysis-(ICA)-Weight-Matrix-Heatmap">¶</a></h4><p>This <strong>heatmap</strong> visualizes how <strong>each variable contributes to each independent component (IC)</strong> in the <strong>ICA model</strong>. Unlike <strong>PCA</strong>, ICA is designed to extract <strong>statistically independent</strong> sources of variation from the data</p>
+<h4 id="independent-component-analysis-ica-weight-matrix-heatmap">**Independent Component Analysis (ICA) Weight Matrix Heatmap**</h4>
+This **heatmap** visualizes how **each variable contributes to each independent component (IC)** in the **ICA model**. Unlike **PCA**, ICA is designed to extract **statistically independent** sources of variation from the data
+
 <p>(The negative associations, <code>blue cells</code>, indicate potential trade-offs between factors, meaning people who strongly support one factor may oppose another)</p>
 <hr/>
-<h4 id="1%EF%B8%8F%E2%83%A3-Understanding-the-Heatmap">1️⃣ Understanding the Heatmap<a class="anchor-link" href="#1%EF%B8%8F%E2%83%A3-Understanding-the-Heatmap">¶</a></h4><ul>
-<li><strong>Rows:</strong> Represent the original variables in the dataset</li>
-<li><strong>Columns:</strong> Represent the Independent Components (IC1 to IC5)</li>
-<li><strong>Cell Values:</strong> The <strong>weights</strong>, indicating the influence of a variable on an independent component</li>
-<li><strong>Color Gradient:</strong><ul>
-<li><strong>Red (High Positive Contribution)</strong> → Strong positive influence of the variable on the IC</li>
-<li><strong>Blue (High Negative Contribution)</strong> → Strong negative influence of the variable on the IC</li>
-<li><strong>Neutral Colors (Near 0 Values)</strong> → Little contribution to the IC</li>
-</ul>
-</li>
-</ul>
+<h4 id="1-understanding-the-heatmap">1️⃣ Understanding the Heatmap</h4>
+- **Rows:** Represent the original variables in the dataset
+- **Columns:** Represent the Independent Components (IC1 to IC5)
+- **Cell Values:** The **weights**, indicating the influence of a variable on an independent component
+- **Color Gradient:**
+  - **Red (High Positive Contribution)** → Strong positive influence of the variable on the IC
+  - **Blue (High Negative Contribution)** → Strong negative influence of the variable on the IC
+  - **Neutral Colors (Near 0 Values)** → Little contribution to the IC
+
 <hr/>
-<h4 id="2%EF%B8%8F%E2%83%A3-Key-Observations">2️⃣ Key Observations<a class="anchor-link" href="#2%EF%B8%8F%E2%83%A3-Key-Observations">¶</a></h4><p><strong>🔴 IC1 (First Independent Component)</strong></p>
-<ul>
-<li><strong>Strongest Positive Contributors:</strong> <code>cc4_famecon (0.55)</code>, <code>cc4_famheal (0.41)</code>, <code>cc4_comm (0.26)</code>, <code>cc4_wealthUS (0.29)</code></li>
-<li><strong>Strongest Negative Contributors:</strong> <code>cc_pol_car (-0.55)</code>, <code>cc_pol_tax (-0.46)</code></li>
-<li><strong>Interpretation:</strong><ul>
-<li>IC1 represents <strong>perceptions of climate change's economic and health impact</strong> <code>(cc4_* variables)</code></li>
-<li>People who score high on this component believe climate change has significant economic and social consequences (<code>cc_famecon</code>, <code>cc4_famheal</code>)</li>
-<li>People who score low (negative values) may be skeptical of climate policies (<code>cc_pol_car</code>, <code>cc_pol_tax</code>)</li>
-</ul>
-</li>
-</ul>
+<h4 id="2-key-observations">2️⃣ Key Observations</h4>
+**🔴 IC1 (First Independent Component)**
+- **Strongest Positive Contributors:** `cc4_famecon (0.55)`, `cc4_famheal (0.41)`, `cc4_comm (0.26)`, `cc4_wealthUS (0.29)`
+- **Strongest Negative Contributors:** `cc_pol_car (-0.55)`, `cc_pol_tax (-0.46)`
+- **Interpretation:**
+  - IC1 represents **perceptions of climate change's economic and health impact** `(cc4_* variables)`
+  - People who score high on this component believe climate change has significant economic and social consequences (`cc_famecon`, `cc4_famheal`)
+  - People who score low (negative values) may be skeptical of climate policies (`cc_pol_car`, `cc_pol_tax`)
+
 <p><strong>🔵 IC2 (Second Independent Component)</strong></p>
 <ul>
 <li><strong>Strongest Negative Contributors (High Magnitude):</strong> <code>pol_party (-0.83)</code>, <code>pol_ideology (-0.81)</code>, <code>cc4_world (-0.68)</code>, <code>cc4_poorUS (-0.69)</code>, <code>cc4_comm (-0.67)</code></li>
@@ -9490,11 +9665,14 @@ PCA Transformed Data:
 </li>
 </ul>
 <hr/>
-<h4 id="3%EF%B8%8F%E2%83%A3-Key-Takeaways">3️⃣ Key Takeaways<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Key-Takeaways">¶</a></h4><p>✅ <strong>IC1 captures economic and health concerns about climate change, with skepticism toward regulation</strong><br/>
-✅ <strong>IC2 is dominated by political identity (<code>pol_*</code>), showing polarization</strong><br/>
-✅ <strong>IC3 represents high financial support for climate policies (<code>ccSolve*</code>)</strong><br/>
-✅ <strong>IC4 represents reluctance to pay for climate policies</strong><br/>
-✅ <strong>IC5 represents moderate climate concern without extreme ideological polarization</strong></p>
+<h4 id="3-key-takeaways">3️⃣ Key Takeaways</h4>
+✅ **IC1 captures economic and health concerns about climate change, with skepticism toward regulation**  
+✅ **IC2 is dominated by political identity (`pol_*`), showing polarization**  
+✅ **IC3 represents high financial support for climate policies (`ccSolve*`)**  
+✅ **IC4 represents reluctance to pay for climate policies**  
+✅ **IC5 represents moderate climate concern without extreme ideological polarization**  
+
+
 </div>
 </div>
 </div>
@@ -9505,7 +9683,7 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">¶</a></h2>
+<h2 id="conclusion">Conclusion</h2>
 </div>
 </div>
 </div>
@@ -9522,54 +9700,55 @@ PCA Transformed Data:
 <li>Explain variance well in <strong>PCA and ICA</strong></li>
 <li>Show meaningful correlations while avoiding redundancy</li>
 </ul>
-<h4 id="%F0%9F%8C%8D-Climate-Change-Perception-Variables">🌍 Climate Change Perception Variables<a class="anchor-link" href="#%F0%9F%8C%8D-Climate-Change-Perception-Variables">¶</a></h4><ul>
-<li><code>cc4_world</code> → Perception of climate change affecting the world <strong>(IC2, IC5)</strong></li>
-<li><code>cc4_wealthUS</code> → Impact of climate change on wealthy communities in the US <strong>(IC2, IC5)</strong></li>
-<li><code>cc4_poorUS</code> → Impact of climate change on poor communities in the US <strong>(IC2, IC5)</strong></li>
-<li><code>cc4_comm</code> → Impact of climate change on local communities <strong>(IC2, IC5)</strong></li>
-<li><code>cc4_famheal</code> → Impact of climate change on family health <strong>(IC2, IC5)</strong></li>
-<li><code>cc4_famecon</code> → Impact of climate change on family economy <strong>(IC1)</strong></li>
-</ul>
+<h4 id="climate-change-perception-variables">🌍 Climate Change Perception Variables</h4>
+- `cc4_world` → Perception of climate change affecting the world **(IC2, IC5)**
+- `cc4_wealthUS` → Impact of climate change on wealthy communities in the US **(IC2, IC5)**
+- `cc4_poorUS` → Impact of climate change on poor communities in the US **(IC2, IC5)**
+- `cc4_comm` → Impact of climate change on local communities **(IC2, IC5)**
+- `cc4_famheal` → Impact of climate change on family health **(IC2, IC5)** 
+- `cc4_famecon` → Impact of climate change on family economy **(IC1)**
+
 <p>📌 Why Keep?</p>
 <ul>
 <li>Strongly represented in ICA <strong>(IC1, IC2, IC5)</strong> and <strong>PCA (PC1)</strong></li>
 <li>Captures different dimensions of <strong>climate concern</strong> in society</li>
 </ul>
-<h4 id="%F0%9F%92%B0-Financial-Support-for-Climate-Policies">💰 Financial Support for Climate Policies<a class="anchor-link" href="#%F0%9F%92%B0-Financial-Support-for-Climate-Policies">¶</a></h4><ul>
-<li><code>ccSolve100</code> → Support for policies costing $100/month <strong>(IC3, IC4)</strong></li>
-<li><code>ccSolve50</code> → Support for policies costing $50/month <strong>(IC3, IC4)</strong></li>
-<li><code>ccSolve10</code> → Support for policies costing $10/month <strong>(IC3, IC4)</strong></li>
-<li><code>ccSolve1</code> → Support for policies costing $1/month <strong>(IC3, IC4)</strong></li>
-<li><code>ccSolve0</code> → Support for policies (no cost specified) <strong>(IC3, IC4)</strong></li>
-</ul>
+<h4 id="financial-support-for-climate-policies">💰 Financial Support for Climate Policies</h4>
+- `ccSolve100` → Support for policies costing $100/month **(IC3, IC4)**
+- `ccSolve50` → Support for policies costing $50/month **(IC3, IC4)**
+- `ccSolve10` → Support for policies costing $10/month **(IC3, IC4)**
+- `ccSolve1` → Support for policies costing $1/month **(IC3, IC4)**
+- `ccSolve0` → Support for policies (no cost specified) **(IC3, IC4)**
+
 <p>📌 Why Keep?</p>
 <ul>
 <li>Clearly separates high willingness <strong>(IC3)</strong> vs. reluctance <strong>(IC4)</strong> to pay for climate action</li>
 <li>PCA also confirms these as distinct factors</li>
 </ul>
-<h4 id="%F0%9F%93%9C-Policy-Support-Variables">📜 Policy Support Variables<a class="anchor-link" href="#%F0%9F%93%9C-Policy-Support-Variables">¶</a></h4><ul>
-<li><code>cc_pol_tax</code> → Support for a carbon tax <strong>(IC2)</strong></li>
-<li><code>cc_pol_car</code> → Support for stricter car emission regulations <strong>(IC1, IC2, IC5)</strong></li>
-</ul>
+<h4 id="policy-support-variables">📜 Policy Support Variables</h4>
+- `cc_pol_tax` → Support for a carbon tax **(IC2)**
+- `cc_pol_car` → Support for stricter car emission regulations **(IC1, IC2, IC5)**
+
 <p>📌 Why Keep?</p>
 <ul>
 <li>ICA (IC1) shows that climate policy skepticism aligns with opposition to regulations</li>
 <li>ICA (IC5) shows a moderate policy support</li>
 <li>PCA also confirms these are separate from financial contributions (<code>ccSolve*</code>)</li>
 </ul>
-<h4 id="%F0%9F%97%B3%EF%B8%8F-Political-Identity-Variables">🗳️ Political Identity Variables<a class="anchor-link" href="#%F0%9F%97%B3%EF%B8%8F-Political-Identity-Variables">¶</a></h4><ul>
-<li><code>pol_party</code> → Self-reported political party identification <strong>(IC2)</strong></li>
-<li><code>pol_ideology</code> → Self-reported political ideology <strong>(IC2)</strong></li>
-</ul>
+<h4 id="political-identity-variables">🗳️ Political Identity Variables</h4>
+- `pol_party` → Self-reported political party identification **(IC2)**
+- `pol_ideology` → Self-reported political ideology **(IC2)**
+
 <p>📌 Why Keep?</p>
 <ul>
 <li>IC2 (ICA) confirms these as the strongest predictors of climate change attitudes</li>
 <li>PCA shows political identity influences policy attitudes (cc_pol_tax, cc_pol_car)</li>
 <li>Helps explain polarization in climate concern and policy support</li>
 </ul>
-<h4 id="%E2%9D%8C-Variables-Considered-for-Removal">❌ Variables Considered for Removal<a class="anchor-link" href="#%E2%9D%8C-Variables-Considered-for-Removal">¶</a></h4><ul>
-<li><code>ccSolve0</code> → Dropping <code>ccSolve0</code> since it overlaps with <code>ccSolve1</code> responses</li>
-</ul>
+<h4 id="variables-considered-for-removal">❌ Variables Considered for Removal</h4>
+- `ccSolve0` → Dropping `ccSolve0` since it overlaps with `ccSolve1` responses
+
+
 </div>
 </div>
 </div>
@@ -9580,7 +9759,7 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Causal-Discovery">Causal Discovery<a class="anchor-link" href="#Causal-Discovery">¶</a></h2>
+<h2 id="causal-discovery">Causal Discovery</h2>
 </div>
 </div>
 </div>
@@ -9591,7 +9770,7 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Data-Preparation-and-Summary">Data Preparation and Summary<a class="anchor-link" href="#Data-Preparation-and-Summary">¶</a></h3>
+<h3 id="data-preparation-and-summary">Data Preparation and Summary</h3>
 </div>
 </div>
 </div>
@@ -9671,7 +9850,7 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Spearman-Correlation-Matrix">Spearman Correlation Matrix<a class="anchor-link" href="#Spearman-Correlation-Matrix">¶</a></h4>
+<h4 id="spearman-correlation-matrix">Spearman Correlation Matrix</h4>
 </div>
 </div>
 </div>
@@ -9721,7 +9900,7 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Distribution-of-All-Variables-with-Density-Overlay">Distribution of All Variables with Density Overlay<a class="anchor-link" href="#Distribution-of-All-Variables-with-Density-Overlay">¶</a></h4>
+<h4 id="distribution-of-all-variables-with-density-overlay">Distribution of All Variables with Density Overlay</h4>
 </div>
 </div>
 </div>
@@ -9792,7 +9971,10 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h5 id="Step-1.-Install-R-on-Your-System">Step 1. Install R on Your System<a class="anchor-link" href="#Step-1.-Install-R-on-Your-System">¶</a></h5><p>If you don’t have R installed, download and install it from <a href="https://cran.r-project.org/bin">https://cran.r-project.org/bin</a></p>
+<h5 id="step-1-install-r-on-your-system">Step 1. Install R on Your System</h5>
+If you don’t have R installed, download and install it from https://cran.r-project.org/bin
+
+
 </div>
 </div>
 </div>
@@ -9803,10 +9985,14 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h5 id="Step-2.-Open-R-and-run-the-following-commands">Step 2. Open R and run the following commands<a class="anchor-link" href="#Step-2.-Open-R-and-run-the-following-commands">¶</a></h5><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">"pcalg"</span><span class="p">,</span><span class="w"> </span><span class="n">dependencies</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">install.packages</span><span class="p">(</span><span class="s">"kpcalg"</span><span class="p">,</span><span class="w"> </span><span class="n">dependencies</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">install.packages</span><span class="p">(</span><span class="s">"RCIT"</span><span class="p">,</span><span class="w"> </span><span class="n">dependencies</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">repos</span><span class="o">=</span><span class="s">"http://R-Forge.R-project.org"</span><span class="p">)</span>
-</pre></div>
+<h5 id="step-2-open-r-and-run-the-following-commands">Step 2. Open R and run the following commands</h5>
+```r
+install.packages("pcalg", dependencies=TRUE)
+install.packages("kpcalg", dependencies=TRUE)
+install.packages("RCIT", dependencies=TRUE, repos="http://R-Forge.R-project.org")
+````
+
+
 </div>
 </div>
 </div>
@@ -9817,7 +10003,7 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h5 id="Step-3:-Ensure-Python-Can-Find-R">Step 3: Ensure Python Can Find R<a class="anchor-link" href="#Step-3:-Ensure-Python-Can-Find-R">¶</a></h5>
+<h5 id="step-3-ensure-python-can-find-r">Step 3: Ensure Python Can Find R</h5>
 </div>
 </div>
 </div>
@@ -9996,26 +10182,39 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="%F0%9F%94%B9-How-to-Install-RCIT-and-RCoT-in-R"><strong>🔹 How to Install <code>RCIT</code> and <code>RCoT</code> in R</strong><a class="anchor-link" href="#%F0%9F%94%B9-How-to-Install-RCIT-and-RCoT-in-R">¶</a></h3><p>Since <strong><code>RCIT</code> and <code>RCoT</code></strong> are not available on <strong>CRAN</strong>, we need to install them directly from <strong>GitHub</strong> using <code>devtools</code>.</p>
+<h3 id="how-to-install-rcit-and-rcot-in-r">**🔹 How to Install `RCIT` and `RCoT` in R**</h3>
+Since **`RCIT` and `RCoT`** are not available on **CRAN**, we need to install them directly from **GitHub** using `devtools`.
+
 <hr/>
-<h3 id="%E2%9C%85-Step-1:-Open-R-and-Install-Required-Dependencies"><strong>✅ Step 1: Open R and Install Required Dependencies</strong><a class="anchor-link" href="#%E2%9C%85-Step-1:-Open-R-and-Install-Required-Dependencies">¶</a></h3><p>Before installing <code>RCIT</code>, install its dependencies:</p>
-<div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">"MASS"</span><span class="p">,</span><span class="w"> </span><span class="s">"momentchi2"</span><span class="p">,</span><span class="w"> </span><span class="s">"devtools"</span><span class="p">))</span>
-</pre></div>
+<h3 id="step-1-open-r-and-install-required-dependencies">**✅ Step 1: Open R and Install Required Dependencies**</h3>
+Before installing `RCIT`, install its dependencies:
+```r
+install.packages(c("MASS", "momentchi2", "devtools"))
+```
+
 <hr/>
-<h3 id="%E2%9C%85-Step-2:-Install-RCIT-from-GitHub"><strong>✅ Step 2: Install <code>RCIT</code> from GitHub</strong><a class="anchor-link" href="#%E2%9C%85-Step-2:-Install-RCIT-from-GitHub">¶</a></h3><p>Now install the <code>RCIT</code> package:</p>
-<div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">devtools</span><span class="p">)</span>
-<span class="nf">install_github</span><span class="p">(</span><span class="s">"Diviyan-Kalainathan/RCIT"</span><span class="p">)</span>
-</pre></div>
+<h3 id="step-2-install-rcit-from-github">**✅ Step 2: Install `RCIT` from GitHub**</h3>
+Now install the `RCIT` package:
+```r
+library(devtools)
+install_github("Diviyan-Kalainathan/RCIT")
+```
+
 <p>This will <strong>download and compile</strong> the package from GitHub.</p>
 <hr/>
-<h3 id="%E2%9C%85-Step-3:-Load-and-Test-RCIT"><strong>✅ Step 3: Load and Test <code>RCIT</code></strong><a class="anchor-link" href="#%E2%9C%85-Step-3:-Load-and-Test-RCIT">¶</a></h3><p>After installation, load the package:</p>
-<div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">RCIT</span><span class="p">)</span>
-</pre></div>
-<p>Test if the functions work:</p>
-<div class="highlight"><pre><span></span><span class="nf">RCIT</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1000</span><span class="p">),</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1000</span><span class="p">),</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1000</span><span class="p">))</span>
-<span class="nf">RCoT</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1000</span><span class="p">),</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1000</span><span class="p">),</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1000</span><span class="p">))</span>
-</pre></div>
-<p>If the installation was successful, this should <strong>return test statistics and p-values</strong>.</p>
+<h3 id="step-3-load-and-test-rcit">**✅ Step 3: Load and Test `RCIT`**</h3>
+After installation, load the package:
+```r
+library(RCIT)
+```
+Test if the functions work:
+```r
+RCIT(rnorm(1000), rnorm(1000), rnorm(1000))
+RCoT(rnorm(1000), rnorm(1000), rnorm(1000))
+```
+If the installation was successful, this should **return test statistics and p-values**.
+
+
 </div>
 </div>
 </div>
@@ -10026,7 +10225,7 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="PC">PC<a class="anchor-link" href="#PC">¶</a></h3>
+<h3 id="pc">PC</h3>
 </div>
 </div>
 </div>
@@ -10325,81 +10524,75 @@ PCA Transformed Data:
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>This table represents the <strong>causal relationships</strong> detected by the <strong>PC algorithm</strong> between climate perception, financial policy support, and political ideology. Each row signifies a <strong>causal direction</strong> from a <strong>Cause</strong> variable to an <strong>Effect</strong> variable.</p>
-<h4 id="1%EF%B8%8F%E2%83%A3-Key-Structural-Insights">1️⃣ Key Structural Insights<a class="anchor-link" href="#1%EF%B8%8F%E2%83%A3-Key-Structural-Insights">¶</a></h4><h5 id="%F0%9F%9F%A2-Climate-Perception-as-a-Core-Driver">🟢 Climate Perception as a Core Driver<a class="anchor-link" href="#%F0%9F%9F%A2-Climate-Perception-as-a-Core-Driver">¶</a></h5><ul>
-<li><code>cc4_world</code> is <strong>highly influential</strong>, causing:<ul>
-<li><code>cc4_comm</code> (climate impact on communities)</li>
-<li><code>cc4_famheal</code> (climate impact on family health)</li>
-<li><code>ccSolve1</code> (willingness to pay a small amount)</li>
-<li><code>cc_pol_tax</code> (support for carbon tax)</li>
-<li><code>cc_pol_car</code> (support for stricter car regulations)</li>
-</ul>
-</li>
-</ul>
+<h4 id="1-key-structural-insights">1️⃣ Key Structural Insights</h4>
+<h5 id="climate-perception-as-a-core-driver">🟢 Climate Perception as a Core Driver</h5>
+- `cc4_world` is **highly influential**, causing:
+  - `cc4_comm` (climate impact on communities)
+  - `cc4_famheal` (climate impact on family health)
+  - `ccSolve1` (willingness to pay a small amount)
+  - `cc_pol_tax` (support for carbon tax)
+  - `cc_pol_car` (support for stricter car regulations)
+
 <p>📌 <strong>Interpretation:</strong><br/>
 👉 People's <strong>beliefs about global climate change drive policy support</strong>, willingness to pay, and perception of its <strong>local and health impacts</strong></p>
-<h5 id="%F0%9F%94%B5-Interdependence-Between-Climate-Perception-Variables">🔵 Interdependence Between Climate Perception Variables<a class="anchor-link" href="#%F0%9F%94%B5-Interdependence-Between-Climate-Perception-Variables">¶</a></h5><ul>
-<li><code>cc4_wealthUS</code>, <code>cc4_poorUS</code>, and <code>cc4_world</code> <strong>influence each other</strong>:<ul>
-<li><code>cc4_wealthUS</code> → <code>cc4_world</code>, <code>cc4_poorUS</code>, <code>cc4_comm</code>, <code>cc4_famheal</code>, <code>cc4_famecon</code></li>
-<li><code>cc4_poorUS</code> → <code>cc4_world</code>, <code>cc4_wealthUS</code>, <code>cc4_comm</code>, <code>cc_pol_car</code>, <code>pol_ideology</code></li>
-</ul>
-</li>
-</ul>
+<h5 id="interdependence-between-climate-perception-variables">🔵 Interdependence Between Climate Perception Variables</h5>
+- `cc4_wealthUS`, `cc4_poorUS`, and `cc4_world` **influence each other**:
+  - `cc4_wealthUS` → `cc4_world`, `cc4_poorUS`, `cc4_comm`, `cc4_famheal`, `cc4_famecon`
+  - `cc4_poorUS` → `cc4_world`, `cc4_wealthUS`, `cc4_comm`, `cc_pol_car`, `pol_ideology`
+
 <p>📌 <strong>Interpretation:</strong><br/>
 👉 <strong>People differentiate</strong> between climate impacts on the world, poor communities, and wealthy communities<br/>
 👉 However, <strong>all perceptions are interconnected</strong>, reinforcing the idea that belief in <strong>climate change effects on specific groups influences general perceptions</strong></p>
-<h4 id="2%EF%B8%8F%E2%83%A3-Political-Influence-on-Climate-Policy-Preferences">2️⃣ Political Influence on Climate Policy Preferences<a class="anchor-link" href="#2%EF%B8%8F%E2%83%A3-Political-Influence-on-Climate-Policy-Preferences">¶</a></h4><ul>
-<li><strong>Political ideology (<code>pol_ideology</code>) directly affects</strong>:<ul>
-<li><code>cc4_world</code> (climate perception)</li>
-<li><code>cc4_poorUS</code> (perceived impact on poor communities)</li>
-<li><code>ccSolve1</code> (willingness to pay for climate policy)</li>
-<li><code>cc_pol_tax</code> (support for carbon tax)</li>
-<li><code>pol_party</code> (political party identification)</li>
-</ul>
-</li>
-</ul>
+<h4 id="2-political-influence-on-climate-policy-preferences">2️⃣ Political Influence on Climate Policy Preferences</h4>
+- **Political ideology (`pol_ideology`) directly affects**:
+  - `cc4_world` (climate perception)
+  - `cc4_poorUS` (perceived impact on poor communities)
+  - `ccSolve1` (willingness to pay for climate policy)
+  - `cc_pol_tax` (support for carbon tax)
+  - `pol_party` (political party identification)
+
 <p>📌 <strong>Interpretation:</strong><br/>
 👉 <strong>Political ideology influences both climate perception and willingness to support financial policies</strong><br/>
 👉 <strong>Partisanship (<code>pol_party</code>) is shaped by ideology</strong>, reinforcing the role of <strong>political polarization in climate policy debates</strong></p>
-<h5 id="%F0%9F%94%B4-The-Role-of-Policy-Preferences">🔴 The Role of Policy Preferences<a class="anchor-link" href="#%F0%9F%94%B4-The-Role-of-Policy-Preferences">¶</a></h5><ul>
-<li><code>cc_pol_tax</code> influences:<ul>
-<li><code>ccSolve10</code>, <code>ccSolve1</code> (financial contributions)</li>
-<li><code>cc_pol_car</code> (regulatory preferences)</li>
-<li><code>pol_party</code> (political party alignment)</li>
-</ul>
-</li>
-</ul>
+<h5 id="the-role-of-policy-preferences">🔴 The Role of Policy Preferences</h5>
+- `cc_pol_tax` influences:
+  - `ccSolve10`, `ccSolve1` (financial contributions)
+  - `cc_pol_car` (regulatory preferences)
+  - `pol_party` (political party alignment)
+
 <p>📌 <strong>Interpretation:</strong><br/>
 👉 <strong>Support for a carbon tax is central to both financial contributions and regulatory policy attitudes</strong><br/>
 👉 <strong>Carbon tax support is also linked to political party affiliation</strong>, confirming that economic policies <strong>are highly politicized</strong></p>
-<h4 id="3%EF%B8%8F%E2%83%A3-Willingness-to-Pay-as-a-Progressive-Ladder">3️⃣ Willingness to Pay as a Progressive Ladder<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Willingness-to-Pay-as-a-Progressive-Ladder">¶</a></h4><ul>
-<li><strong>Financial contributions follow a hierarchical structure</strong>:<ul>
-<li><code>ccSolve100</code> ↔ <code>ccSolve50</code></li>
-<li><code>ccSolve10</code> → <code>ccSolve50</code> → <code>ccSolve100</code></li>
-<li><code>ccSolve1</code> → <code>ccSolve10</code>, <code>ccSolve50</code>, <code>ccSolve100</code></li>
-</ul>
-</li>
-</ul>
+<h4 id="3-willingness-to-pay-as-a-progressive-ladder">3️⃣ Willingness to Pay as a Progressive Ladder</h4>
+- **Financial contributions follow a hierarchical structure**:
+  - `ccSolve100` ↔ `ccSolve50`
+  - `ccSolve10` → `ccSolve50` → `ccSolve100`
+  - `ccSolve1` → `ccSolve10`, `ccSolve50`, `ccSolve100`
+
 <p>📌 <strong>Interpretation:</strong><br/>
 👉 People <strong>who are willing to pay smaller amounts (<code>ccSolve1</code>, <code>ccSolve10</code>) are also more likely to accept higher costs (<code>ccSolve50</code>, <code>ccSolve100</code>)</strong><br/>
 👉 This suggests <strong>a gradual increase in financial commitment</strong>, meaning <strong>entry-level support (small payments) is key for larger policy changes</strong></p>
-<h4 id="4%EF%B8%8F%E2%83%A3-Cross-Sector-Interactions">4️⃣ Cross-Sector Interactions<a class="anchor-link" href="#4%EF%B8%8F%E2%83%A3-Cross-Sector-Interactions">¶</a></h4><ul>
-<li><strong>Health &amp; Economic Concerns</strong><ul>
-<li><code>cc4_comm</code> → <code>cc4_famheal</code>, <code>cc4_famecon</code></li>
-<li><code>cc4_famecon</code> → <code>cc4_famheal</code></li>
-</ul>
-</li>
-</ul>
+<h4 id="4-cross-sector-interactions">4️⃣ Cross-Sector Interactions</h4>
+- **Health &amp; Economic Concerns**
+  - `cc4_comm` → `cc4_famheal`, `cc4_famecon`
+  - `cc4_famecon` → `cc4_famheal`
+
 <p>📌 <strong>Interpretation:</strong><br/>
 👉 <strong>Economic and health concerns are closely tied</strong> to local climate perceptions<br/>
 👉 This highlights that <strong>people perceive climate change not just as an environmental issue, but as a direct threat to health and financial stability</strong></p>
-<h4 id="5%EF%B8%8F%E2%83%A3-High-Level-Summary-&amp;-Implications">5️⃣ High-Level Summary &amp; Implications<a class="anchor-link" href="#5%EF%B8%8F%E2%83%A3-High-Level-Summary-&amp;-Implications">¶</a></h4><p>✅ <strong>Political ideology plays a dominant role in shaping climate perception and financial support for policies</strong><br/>
-✅ <strong>Climate perceptions (global, poor, and wealthy communities) are interconnected but distinct</strong><br/>
-✅ <strong>Policy preferences (carbon tax, car regulations) are highly politicized, influenced by ideology and party affiliation</strong><br/>
-✅ <strong>Willingness to pay follows a stepwise structure, meaning policy acceptance increases progressively</strong><br/>
-✅ <strong>Local economic and health concerns reinforce climate-related fears and influence policy opinions</strong></p>
-<h4 id="%F0%9F%93%8C-Next-Steps-&amp;-Potential-Analyses">📌 Next Steps &amp; Potential Analyses<a class="anchor-link" href="#%F0%9F%93%8C-Next-Steps-&amp;-Potential-Analyses">¶</a></h4><p>🔹 <strong>Check Edge Strengths</strong> – Which relationships are strongest?<br/>
-🔹 <strong>Compare Across Alpha Levels</strong> – Do different statistical thresholds change results?<br/>
-🔹 <strong>Factor Analysis</strong> – Do <strong>financial policy preferences and political ideology cluster separately</strong>?</p>
+<h4 id="5-high-level-summary-implications">5️⃣ High-Level Summary &amp; Implications</h4>
+✅ **Political ideology plays a dominant role in shaping climate perception and financial support for policies**  
+✅ **Climate perceptions (global, poor, and wealthy communities) are interconnected but distinct**  
+✅ **Policy preferences (carbon tax, car regulations) are highly politicized, influenced by ideology and party affiliation**  
+✅ **Willingness to pay follows a stepwise structure, meaning policy acceptance increases progressively**  
+✅ **Local economic and health concerns reinforce climate-related fears and influence policy opinions**  
+
+<h4 id="next-steps-potential-analyses">📌 Next Steps &amp; Potential Analyses</h4>
+🔹 **Check Edge Strengths** – Which relationships are strongest?  
+🔹 **Compare Across Alpha Levels** – Do different statistical thresholds change results?  
+🔹 **Factor Analysis** – Do **financial policy preferences and political ideology cluster separately**?  
+
+
 </div>
 </div>
 </div>
@@ -10453,18 +10646,18 @@ PCA Transformed Data:
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>This <strong>causal graph</strong> represents the relationships between climate change perception, financial policy support, and political ideology variables, as inferred using the <strong>PC algorithm</strong></p>
-<h4 id="1%EF%B8%8F%E2%83%A3-General-Structure">1️⃣ General Structure<a class="anchor-link" href="#1%EF%B8%8F%E2%83%A3-General-Structure">¶</a></h4><ul>
-<li>The nodes represent <strong>variables</strong> in the dataset</li>
-<li>The <strong>arrows indicate directed causal relationships</strong> inferred by the PC algorithm</li>
-<li><strong>Larger nodes indicate more central variables</strong>, likely having <strong>higher degrees</strong> (more connections)</li>
-</ul>
-<h4 id="2%EF%B8%8F%E2%83%A3-Key-Observations">2️⃣ Key Observations<a class="anchor-link" href="#2%EF%B8%8F%E2%83%A3-Key-Observations">¶</a></h4><h5 id="%F0%9F%9F%A2-Central-Variables-(Highly-Connected)">🟢 Central Variables (Highly Connected)<a class="anchor-link" href="#%F0%9F%9F%A2-Central-Variables-(Highly-Connected)">¶</a></h5><ul>
-<li><p><strong><code>cc4_world</code> (Climate Change Perception - Global Impact)</strong></p>
+<h4 id="1-general-structure">1️⃣ General Structure</h4>
+- The nodes represent **variables** in the dataset
+- The **arrows indicate directed causal relationships** inferred by the PC algorithm
+- **Larger nodes indicate more central variables**, likely having **higher degrees** (more connections)
+
+<h4 id="2-key-observations">2️⃣ Key Observations</h4>
+<h5 id="central-variables-highly-connected">🟢 Central Variables (Highly Connected)</h5>
+- **`cc4_world` (Climate Change Perception - Global Impact)**
+  - It is **highly central**, meaning it **strongly influences other variables**
+  - Connected to **political ideology (`pol_ideology`), local community impact (`cc4_comm`), and policy preferences (`cc_pol_tax`)**
+
 <ul>
-<li>It is <strong>highly central</strong>, meaning it <strong>strongly influences other variables</strong></li>
-<li>Connected to <strong>political ideology (<code>pol_ideology</code>), local community impact (<code>cc4_comm</code>), and policy preferences (<code>cc_pol_tax</code>)</strong></li>
-</ul>
-</li>
 <li><p><strong><code>cc4_poorUS</code> (Climate Change Impact on Poor Communities)</strong></p>
 <ul>
 <li>Linked to <strong><code>cc4_world</code></strong> and <strong><code>pol_ideology</code></strong>, indicating that <strong>people’s perceptions of climate impact on vulnerable groups may shape their broader climate beliefs</strong></li>
@@ -10477,34 +10670,35 @@ PCA Transformed Data:
 </ul>
 </li>
 </ul>
-<h5 id="%F0%9F%94%B4-Political-Variables-&amp;-Their-Role">🔴 Political Variables &amp; Their Role<a class="anchor-link" href="#%F0%9F%94%B4-Political-Variables-&amp;-Their-Role">¶</a></h5><ul>
-<li><p><strong><code>pol_ideology</code> → <code>cc4_world</code>, <code>cc4_poorUS</code>, and <code>cc_pol_tax</code></strong></p>
+<h5 id="political-variables-their-role">🔴 Political Variables &amp; Their Role</h5>
+- **`pol_ideology` → `cc4_world`, `cc4_poorUS`, and `cc_pol_tax`**
+  - Indicates that **political ideology plays a major role in shaping climate beliefs**
+  - Suggests that people’s stance on **climate issues may be influenced by their political leanings rather than direct exposure to climate effects**
+
 <ul>
-<li>Indicates that <strong>political ideology plays a major role in shaping climate beliefs</strong></li>
-<li>Suggests that people’s stance on <strong>climate issues may be influenced by their political leanings rather than direct exposure to climate effects</strong></li>
-</ul>
-</li>
-<li><p><strong><code>pol_party</code> → <code>ccSolve10</code>, <code>cc_pol_tax</code></strong></p>
-<ul>
+<li><strong><code>pol_party</code> → <code>ccSolve10</code>, <code>cc_pol_tax</code></strong><ul>
 <li>Shows <strong>a direct link between party identification and support for climate policies</strong></li>
 <li>Political affiliation may <strong>predict policy preferences</strong>, particularly in financial contributions (<code>ccSolve*</code> variables)</li>
 </ul>
 </li>
 </ul>
-<h5 id="%F0%9F%93%89-Financial-Policy-Support-Trends">📉 Financial Policy Support Trends<a class="anchor-link" href="#%F0%9F%93%89-Financial-Policy-Support-Trends">¶</a></h5><ul>
-<li><strong><code>ccSolve100</code> → <code>ccSolve50</code> → <code>ccSolve10</code> → <code>ccSolve1</code></strong><ul>
-<li>This <strong>sequential structure</strong> suggests that <strong>willingness to pay follows a tiered pattern</strong></li>
-<li>People who support <strong>high-cost policies (<code>ccSolve100</code>) are also likely to support lower-cost policies (<code>ccSolve1</code>)</strong></li>
-</ul>
-</li>
-</ul>
-<h4 id="3%EF%B8%8F%E2%83%A3-Insights-&amp;-Interpretations">3️⃣ Insights &amp; Interpretations<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Insights-&amp;-Interpretations">¶</a></h4><p>✅ <strong>Climate perception (<code>cc4_world</code>, <code>cc4_poorUS</code>) is a key driver</strong> of policy support, indicating that <strong>people’s belief in climate change matters in shaping their willingness to act</strong><br/>
-✅ <strong>Political ideology (<code>pol_ideology</code>, <code>pol_party</code>) is a strong upstream variable</strong>, meaning that <strong>political identity significantly influences climate policy support</strong><br/>
-✅ <strong>Financial contributions (<code>ccSolve*</code> variables) are structured in a cascading way</strong>, meaning that <strong>people who support expensive climate policies also support cheaper ones</strong><br/>
-✅ <strong>Economic &amp; regulatory policy preferences (<code>cc_pol_tax</code>, <code>cc_pol_car</code>) are connected to both climate beliefs and political identity</strong>, reinforcing the idea that <strong>partisanship affects willingness to regulate emissions and impose taxes</strong></p>
-<h4 id="%F0%9F%93%8C-Potential-Next-Steps">📌 Potential Next Steps<a class="anchor-link" href="#%F0%9F%93%8C-Potential-Next-Steps">¶</a></h4><p>🔹 <strong>Check Edge Strengths</strong>: Do all causal links have strong statistical significance?<br/>
-🔹 <strong>Compare with FCI Output</strong>: Does the <strong>FCI algorithm</strong> confirm similar relationships?<br/>
-🔹 <strong>Check Robustness</strong>: Try using <strong>different <code>alpha</code> thresholds</strong> in the PC algorithm.</p>
+<h5 id="financial-policy-support-trends">📉 Financial Policy Support Trends</h5>
+- **`ccSolve100` → `ccSolve50` → `ccSolve10` → `ccSolve1`**
+  - This **sequential structure** suggests that **willingness to pay follows a tiered pattern**
+  - People who support **high-cost policies (`ccSolve100`) are also likely to support lower-cost policies (`ccSolve1`)**
+
+<h4 id="3-insights-interpretations">3️⃣ Insights &amp; Interpretations</h4>
+✅ **Climate perception (`cc4_world`, `cc4_poorUS`) is a key driver** of policy support, indicating that **people’s belief in climate change matters in shaping their willingness to act**  
+✅ **Political ideology (`pol_ideology`, `pol_party`) is a strong upstream variable**, meaning that **political identity significantly influences climate policy support**  
+✅ **Financial contributions (`ccSolve*` variables) are structured in a cascading way**, meaning that **people who support expensive climate policies also support cheaper ones**  
+✅ **Economic &amp; regulatory policy preferences (`cc_pol_tax`, `cc_pol_car`) are connected to both climate beliefs and political identity**, reinforcing the idea that **partisanship affects willingness to regulate emissions and impose taxes**  
+
+<h4 id="potential-next-steps">📌 Potential Next Steps</h4>
+🔹 **Check Edge Strengths**: Do all causal links have strong statistical significance?  
+🔹 **Compare with FCI Output**: Does the **FCI algorithm** confirm similar relationships?  
+🔹 **Check Robustness**: Try using **different `alpha` thresholds** in the PC algorithm.  
+
+
 </div>
 </div>
 </div>
@@ -44909,7 +45103,7 @@ PCA Transformed Data:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="FCI">FCI<a class="anchor-link" href="#FCI">¶</a></h3>
+<h3 id="fci">FCI</h3>
 </div>
 </div>
 </div>
