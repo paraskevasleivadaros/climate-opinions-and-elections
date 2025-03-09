@@ -7,9 +7,10 @@ skimpy
 factor-analyzer
 scikit-learn
 tex
-cdt
 networkx
 torch
 rpy2
 causal-learn
 graphviz
+pydot
+tigramite
