@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>causal-methods</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>index</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7511,6 +7511,151 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Table-of-Contents">Table of Contents<a class="anchor-link" href="#Table-of-Contents">¶</a></h1><ul>
+<li><a href="#exploratory-data-analysis">Exploratory Data Analysis</a><ul>
+<li><a href="#data-preparation">Data Preparation</a><ul>
+<li><a href="#check-for-duplicate-pids-in-the-dataset">Check for duplicate PIDs in the dataset</a></li>
+<li><a href="#filter-wave-survey-data">Filter Wave Survey Data</a></li>
+<li><a href="#likert-scale-standardization">Likert Scale Standardization</a></li>
+<li><a href="#fill-missing-values">Fill missing values</a></li>
+</ul>
+</li>
+<li><a href="#data-description">Data Description</a><ul>
+<li><a href="#climate-change-perception-variables-(%60cc4_*%60">Climate Change Perception Variables (<code>cc4_*</code>)</a>)</li>
+<li><a href="#willingness-to-pay-for-climate-solutions-(%60ccsolve*%60">Willingness to Pay for Climate Solutions (<code>ccSolve*</code>)</a>)</li>
+<li><a href="#climate-policy-support-(%60cc_pol_*%60">Climate Policy Support (<code>cc_pol_*</code>)</a>)</li>
+<li><a href="#political-affiliation-and-ideology--(%60pol_*%60">Political Affiliation and Ideology  (<code>pol_*</code>)</a>)</li>
+</ul>
+</li>
+<li><a href="#data-summary">Data Summary</a><ul>
+<li><a href="#1%EF%B8%8F%E2%83%A3-summary-statistics">1️⃣ Summary Statistics</a></li>
+<li><a href="#2%EF%B8%8F%E2%83%A3-climate-perception-variables-(%60cc4_*%60">2️⃣ Climate Perception Variables (<code>cc4_*</code>)</a>)<ul>
+<li><a href="#%F0%9F%93%9D-key-insights">📝 Key Insights</a></li>
+</ul>
+</li>
+<li><a href="#3%EF%B8%8F%E2%83%A3-willingness-to-pay-for-climate-policy-(%60ccsolve*%60">3️⃣ Willingness to Pay for Climate Policy (<code>ccSolve*</code>)</a>)<ul>
+<li><a href="#%F0%9F%93%9D-key-insights">📝 Key Insights</a></li>
+</ul>
+</li>
+<li><a href="#4%EF%B8%8F%E2%83%A3-climate-policy-support-(%60cc_pol_*%60">4️⃣ Climate Policy Support (<code>cc_pol_*</code>)</a>)<ul>
+<li><a href="#%F0%9F%93%9D-key-insights">📝 Key Insights</a></li>
+</ul>
+</li>
+<li><a href="#5%EF%B8%8F%E2%83%A3-political-identity-&amp;-ideology-(%60pol_party%60,-%60pol_ideology%60">5️⃣ Political Identity &amp; Ideology (<code>pol_party</code>, <code>pol_ideology</code>)</a>)<ul>
+<li><a href="#%F0%9F%93%9D-key-insights">📝 Key Insights</a></li>
+</ul>
+</li>
+<li><a href="#6%EF%B8%8F%E2%83%A3-overall-key-takeaways">6️⃣ Overall Key Takeaways</a></li>
+</ul>
+</li>
+<li><a href="#numerical-data-distribution">Numerical Data Distribution</a><ul>
+<li><a href="#%F0%9F%94%8D-key-observations">🔍 Key Observations</a></li>
+<li><a href="#%F0%9F%93%8C-key-takeways">📌 Key Takeways</a></li>
+</ul>
+</li>
+<li><a href="#spearman-correlation-matrix">Spearman Correlation Matrix</a><ul>
+<li><a href="#%F0%9F%94%8D-key-observations">🔍 Key Observations</a></li>
+<li><a href="#%F0%9F%93%8C-key-takeaways">📌 Key Takeaways</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#exploratory-factor-analysis-(efa">Exploratory Factor Analysis (EFA)</a>)<ul>
+<li><a href="#1%EF%B8%8F%E2%83%A3-optimal-number-of-factors">1️⃣ Optimal Number of Factors</a></li>
+<li><a href="#2%EF%B8%8F%E2%83%A3-factor-loadings">2️⃣ Factor Loadings</a></li>
+<li><a href="#3%EF%B8%8F%E2%83%A3-factor-interpretations">3️⃣ Factor Interpretations</a></li>
+<li><a href="#4%EF%B8%8F%E2%83%A3-eigenvalues">4️⃣ Eigenvalues</a></li>
+<li><a href="#5%EF%B8%8F%E2%83%A3-key-insights">5️⃣ Key Insights</a></li>
+<li><a href="#1%EF%B8%8F%E2%83%A3-factor-loadings">1️⃣ Factor Loadings</a></li>
+<li><a href="#2%EF%B8%8F%E2%83%A3-interpretation-of-the-factor-loadings-heatmap">2️⃣ Interpretation of the Factor Loadings Heatmap</a></li>
+<li><a href="#3%EF%B8%8F%E2%83%A3-key-takeaways">3️⃣ Key Takeaways</a></li>
+<li><a href="#principal-component-analysis-(pca">Principal Component Analysis (PCA)</a>)<ul>
+<li><a href="#1%EF%B8%8F%E2%83%A3-pca">1️⃣ PCA</a></li>
+<li><a href="#2%EF%B8%8F%E2%83%A3-explained-variance-ratios">2️⃣ Explained Variance Ratios</a></li>
+<li><a href="#3%EF%B8%8F%E2%83%A3-visualizing-pca:-scree-plot">3️⃣ Visualizing PCA: Scree Plot</a></li>
+<li><a href="#pca-variable-contributions-heatmap">PCA Variable Contributions Heatmap</a><ul>
+<li><a href="#1%EF%B8%8F%E2%83%A3-understanding-the-heatmap">1️⃣ Understanding the Heatmap</a></li>
+<li><a href="#2%EF%B8%8F%E2%83%A3-key-observations">2️⃣ Key Observations</a></li>
+<li><a href="#3%EF%B8%8F%E2%83%A3-takeaways">3️⃣ Takeaways</a></li>
+</ul>
+</li>
+<li><a href="#cos%C2%B2-(squared-cosine">Cos² (Squared Cosine) Heatmap</a>-heatmap)</li>
+<li><a href="#1%EF%B8%8F%E2%83%A3-understanding-cos%C2%B2-values">1️⃣ Understanding Cos² Values</a></li>
+<li><a href="#2%EF%B8%8F%E2%83%A3-key-observations">2️⃣ Key Observations</a></li>
+<li><a href="#3%EF%B8%8F%E2%83%A3-takeaways">3️⃣ Takeaways</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#independent-component-analysis-(ica">Independent Component Analysis (ICA)</a>)<ul>
+<li><a href="#**independent-component-analysis-(ica"><strong>Independent Component Analysis (ICA) Weight Matrix Heatmap</strong></a>-weight-matrix-heatmap**)</li>
+<li><a href="#1%EF%B8%8F%E2%83%A3-understanding-the-heatmap">1️⃣ Understanding the Heatmap</a></li>
+<li><a href="#2%EF%B8%8F%E2%83%A3-key-observations">2️⃣ Key Observations</a></li>
+<li><a href="#3%EF%B8%8F%E2%83%A3-key-takeaways">3️⃣ Key Takeaways</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a><ul>
+<li><a href="#%F0%9F%8C%8D-climate-change-perception-variables">🌍 Climate Change Perception Variables</a></li>
+<li><a href="#%F0%9F%92%B0-financial-support-for-climate-policies">💰 Financial Support for Climate Policies</a></li>
+<li><a href="#%F0%9F%93%9C-policy-support-variables">📜 Policy Support Variables</a></li>
+<li><a href="#%F0%9F%97%B3%EF%B8%8F-political-identity-variables">🗳️ Political Identity Variables</a></li>
+<li><a href="#%E2%9D%8C-variables-considered-for-removal">❌ Variables Considered for Removal</a></li>
+</ul>
+</li>
+<li><a href="#causal-discovery">Causal Discovery</a><ul>
+<li><a href="#data-preparation-and-summary">Data Preparation and Summary</a><ul>
+<li><a href="#spearman-correlation-matrix">Spearman Correlation Matrix</a></li>
+<li><a href="#distribution-of-all-variables-with-density-overlay">Distribution of All Variables with Density Overlay</a><ul>
+<li><a href="#step-1.-install-r-on-your-system">Step 1. Install R on Your System</a></li>
+<li><a href="#step-2.-open-r-and-run-the-following-commands">Step 2. Open R and run the following commands</a></li>
+<li><a href="#step-3:-ensure-python-can-find-r">Step 3: Ensure Python Can Find R</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#**%F0%9F%94%B9-how-to-install-%60rcit%60-and-%60rcot%60-in-r**"><strong>🔹 How to Install <code>RCIT</code> and <code>RCoT</code> in R</strong></a></li>
+<li><a href="#**%E2%9C%85-step-1:-open-r-and-install-required-dependencies**"><strong>✅ Step 1: Open R and Install Required Dependencies</strong></a></li>
+<li><a href="#**%E2%9C%85-step-2:-install-%60rcit%60-from-github**"><strong>✅ Step 2: Install <code>RCIT</code> from GitHub</strong></a></li>
+<li><a href="#**%E2%9C%85-step-3:-load-and-test-%60rcit%60**"><strong>✅ Step 3: Load and Test <code>RCIT</code></strong></a></li>
+<li><a href="#pc">PC</a><ul>
+<li><a href="#1%EF%B8%8F%E2%83%A3-key-structural-insights">1️⃣ Key Structural Insights</a><ul>
+<li><a href="#%F0%9F%9F%A2-climate-perception-as-a-core-driver">🟢 Climate Perception as a Core Driver</a></li>
+<li><a href="#%F0%9F%94%B5-interdependence-between-climate-perception-variables">🔵 Interdependence Between Climate Perception Variables</a></li>
+</ul>
+</li>
+<li><a href="#2%EF%B8%8F%E2%83%A3-political-influence-on-climate-policy-preferences">2️⃣ Political Influence on Climate Policy Preferences</a><ul>
+<li><a href="#%F0%9F%94%B4-the-role-of-policy-preferences">🔴 The Role of Policy Preferences</a></li>
+</ul>
+</li>
+<li><a href="#3%EF%B8%8F%E2%83%A3-willingness-to-pay-as-a-progressive-ladder">3️⃣ Willingness to Pay as a Progressive Ladder</a></li>
+<li><a href="#4%EF%B8%8F%E2%83%A3-cross-sector-interactions">4️⃣ Cross-Sector Interactions</a></li>
+<li><a href="#5%EF%B8%8F%E2%83%A3-high-level-summary-&amp;-implications">5️⃣ High-Level Summary &amp; Implications</a></li>
+<li><a href="#%F0%9F%93%8C-next-steps-&amp;-potential-analyses">📌 Next Steps &amp; Potential Analyses</a></li>
+<li><a href="#1%EF%B8%8F%E2%83%A3-general-structure">1️⃣ General Structure</a></li>
+<li><a href="#2%EF%B8%8F%E2%83%A3-key-observations">2️⃣ Key Observations</a><ul>
+<li><a href="#%F0%9F%9F%A2-central-variables-(highly-connected">🟢 Central Variables (Highly Connected)</a>)</li>
+<li><a href="#%F0%9F%94%B4-political-variables-&amp;-their-role">🔴 Political Variables &amp; Their Role</a></li>
+<li><a href="#%F0%9F%93%89-financial-policy-support-trends">📉 Financial Policy Support Trends</a></li>
+</ul>
+</li>
+<li><a href="#3%EF%B8%8F%E2%83%A3-insights-&amp;-interpretations">3️⃣ Insights &amp; Interpretations</a></li>
+<li><a href="#%F0%9F%93%8C-potential-next-steps">📌 Potential Next Steps</a></li>
+</ul>
+</li>
+<li><a href="#fci">FCI</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
