@@ -1,5 +1,5 @@
 pandas
-numpy
+numpy==2.1.0
 jupyter
 seaborn
 matplotlib
@@ -14,3 +14,5 @@ causal-learn
 graphviz
 pydot
 tigramite
+dcor
+numba
