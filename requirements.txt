@@ -16,3 +16,4 @@ pydot
 tigramite
 dcor
 numba
+semopy
