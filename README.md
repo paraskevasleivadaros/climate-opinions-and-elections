@@ -1,40 +1,100 @@
-# climate-opinions-shift-elections-policies
-Electoral Cycles and Climate Attitudes: How Do People's Views on Climate Change and Policies Shift During an Election?
+# 🗳️ Elections and Climate Attitudes  
+**How Do People’s Views on Climate Change and Policies Shift During an Election?**  
+By Paraskevas K. Leivadaros  
+Supervised by Kyuri Park  
+University of Amsterdam | MSc in Data Science (2025)
 
-### Relevance of research question
-My research question is highly relevant as it explores the relationship between political events, policies, and society's attitudes toward climate change. Climate change is one of the most important global challenges at the moment. For this reason, understanding how elections and policies shape public opinion is crucial. This knowledge is important for policymakers and researchers working to connect political decisions with public involvement in tackling climate change.
+## 📘 Overview
+This repository contains the code and data analysis for my master's thesis, which investigates how the 2020 U.S. elections influenced public perceptions of climate change, policy support, and financial willingness to act.
 
-### Causal Discovery or Causal Inference?
-In this research report I will be using causal inference, as my primary interest lies in understanding the effect of specific factors (elections and policies) on people's attitudes toward climate change.
+The analysis uses a combination of **causal discovery (PC algorithm)** and **dynamic modeling (VAR and GVAR)** to uncover how climate attitudes evolve over time and are shaped by political affiliation and ideological positioning.
 
-### Why Causal Inference?
-- **Known causal structure:** My research already hypothesizes relationships; elections and policies influence attitudes toward climate change. I am not trying to discover the causal graph from scratch.
-- **Quantifying effects:** I want to measure how much (e.g., the magnitude of the shift in attitudes) and in what way (e.g., positive or negative) elections and policies influence attitudes.
+## 📌 Research Questions
+1. How do attitudes toward carbon taxes or emissions standards shift around election periods?
+2. Does willingness to pay for climate solutions change during electoral cycles?
+3. Do perceived harms (e.g., to family or community) drive support for climate policies?
+4. How do political identity and ideology moderate climate-related attitudes?
 
-### Sub-Questions
-I am focusing on causal inference which is most suited to sub-questions that aim to **quantify causal effects** or determine the **mechanisms** through which certain variables (e.g., elections, policies) influence others (e.g., attitudes toward climate change). Here's a breakdown of the sub-questions:
+## 📊 Dataset Summary
+- 📈 **Observations**: 4,520  
+- 📊 **Variables**: 11 numeric (8 float64, 3 int64), standardized to 1–5 Likert scales  
+- 📅 **Time Range**: 2020–2021 (Waves 2–4, centered on U.S. election)
 
-1. **Election Timing and Attitudes**
-  - How do people's attitudes toward climate change change in the months leading up to an election?
-    - Causal Inference Role: Quantify the causal effect of the election campaign period on attitudes by comparing pre-election and election-period data.
-    - Methods: Difference-in-Differences (DiD), time-series analysis
-  - What differences, if any, are observed in attitudes immediately after an election compared to before?
-    - Causal Inference Role: Measure the causal impact of the election outcome on attitudes
-    - Methods: Regression discontinuity design (if election results are close), DiD
-  - Do shifts in attitudes differ depending on the election's outcome (e.g., political party or candidate elected)?
-    - Causal Inference Role: Examine the effect of different political outcomes on public attitudes
-    - Methods: Instrumental variables (e.g., close elections as instruments), stratified analyses
-2. **Role of Policies**
-  - How do climate change policies announced during the election campaign affect public attitudes toward climate change?
-    - Causal Inference Role: Evaluate the causal effect of policy announcements on attitudes
-    - Methods: Propensity score matching, DiD (pre- and post-policy announcement)
-  - Are policies introduced after an election perceived differently in shaping public opinion compared to those introduced before?
-    - Causal Inference Role: Compare the causal impact of timing (pre- vs. post-election) on public attitudes
-    - Methods: Mediation analysis, DiD
-3. **Contextual and Demographic Factors**
-  - How do demographic factors (e.g., age, education, political affiliation) influence shifts in attitudes toward climate change before and after an election?
-    - Causal Inference Role: Investigate heterogeneous treatment effects (how causal effects vary by subgroup)
-    - Methods: Subgroup analysis in causal inference models, propensity score stratification
-  - Do regional or national differences in climate policy frameworks affect how attitudes shift during election periods?
-    - Causal Inference Role: Explore causal effects across different contexts (e.g., regions, policy environments)
-    - Methods: Multi-level models, stratified analysis
+### Key Dimensions
+| Dimension                    | Variables                                                |
+|-----------------------------|----------------------------------------------------------|
+| Climate concern             | `cc4_world`, `cc4_comm`, `cc4_famheal`, `cc4_famecon`... |
+| Willingness to pay (WTP)    | `ccSolve` (scaled & merged from ccSolveX variables)      |
+| Policy support              | `cc_pol_tax`, `cc_pol_car`                               |
+| Political orientation       | `pol_party`, `pol_ideology`                              |
+
+- Variables initially varied in scale (1–4, 1–3, 1–5) and were harmonized to a 1–5 Likert scale.
+- The `ccSolve` variable was created by dollar-weighting and normalizing responses from a randomized cost-assigned policy question.
+- ~80% of original `ccSolveX` variables had missing values by design; merged approach eliminates that issue.
+
+## 🔍 Exploratory Data Analysis (EDA)
+### Key Insights
+- **Climate concern** is higher at the global/community level than at the personal or economic level.
+- **Support for policy** (especially `cc_pol_car`) is consistently higher than **WTP**, which is lowest when high costs are introduced.
+- **Political identity and ideology** strongly correlate with support for policies, more than with general climate concern.
+- **PCA & ICA** suggest three major latent dimensions:
+  1. Climate impact perception
+  2. Willingness to pay
+  3. Political/policy alignment
+
+👉 See [`notebooks/eda.ipynb`](notebooks/eda.ipynb) for full visualizations:  
+- Histograms & KDE plots  
+- Spearman correlation heatmaps  
+- PCA, ICA, Factor Analysis  
+
+## ⚙️ Methodology
+### 1. Causal Discovery
+- **PC Algorithm** (constraint-based DAG learning)
+- Guides selection and ordering of variables for time series modeling
+
+### 2. Time Series Modeling
+- **VAR (Vector Autoregression)**: Captures lagged interdependencies across time
+- **GVAR (Graphical VAR)**: Adds regularization using learned causal graph
+- **Event Split**: Observations segmented pre- and post-2020 U.S. Election for comparative modeling
+
+## 📁 Project Structure
+```
+📁 data/
+    └── 4-cleaned_data.csv               # Final dataset (standardized & imputed)
+📁 notebooks/
+    ├── eda.ipynb                        # Exploratory data analysis
+📄 README.md
+📄 requirements.txt
+```
+
+## 📦 Installation
+```bash
+git clone https://github.com/paraskevasleivadaros/climate-opinions-shift-elections-policies.git
+cd climate-opinions-shift-elections-policies
+pip install -r requirements.txt
+```
+
+## 📈 Preliminary Findings
+- Election timing appears to *moderate* attitudes, particularly among independents.
+- Climate concern and support for emission regulations remain relatively high, but **WTP remains low**, especially among conservative-leaning respondents.
+- **VAR and GVAR results pending** — will be updated soon.
+
+## 🧠 Tools and Libraries
+- `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`
+- `networkx` (PC algorithm)
+- `statsmodels` (VAR)
+- `graphicalvar`, `factor_analyzer`
+- `skimpy`, `FastICA`
+
+## 📜 License
+MIT License
+
+## 🙏 Acknowledgments
+- Supervisor: Kyuri Park  
+- Faculty of Science – University of Amsterdam  
+- The creators of open-source survey datasets and Python libraries
+
+## 📬 Contact
+**Paraskevas K. Leivadaros**  
+📧 [paraskevasleivadaros@gmail.com](mailto:paraskevasleivadaros@gmail.com)  
+🌐 [GitHub](https://github.com/paraskevasleivadaros) | [LinkedIn](https://www.linkedin.com/in/paraskevasleivadaros)
