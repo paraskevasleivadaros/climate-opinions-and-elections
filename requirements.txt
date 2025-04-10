@@ -17,3 +17,4 @@ tigramite
 dcor
 numba
 semopy
+linearmodels
