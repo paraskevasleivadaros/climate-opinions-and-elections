@@ -87,7 +87,7 @@ pip install -r requirements.txt
 - `skimpy`, `FastICA`
 
 ## 📜 License
-[GPL-3.0-1-ov-file](?tab=GPL-3.0-1-ov-file)
+[GPL-3.0-1-ov-file](/LICENSE)
 
 ## 🙏 Acknowledgments
 - Supervisor: Kyuri Park  
