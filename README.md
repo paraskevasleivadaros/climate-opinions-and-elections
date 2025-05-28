@@ -11,7 +11,7 @@ This repository contains the code and materials for the master's thesis *"Electi
 - 📊 **Variables**: 20 numeric (11 float64, 9 int64)
 - 📅 **Time Range**: 2020–2021 (Waves 2,3 and 4, centered on U.S. election)
 
-### 🧱 Key Dimensions
+### Key Dimensions
 | Dimension                | Variables                                                                              |
 |--------------------------|----------------------------------------------------------------------------------------|
 | Climate concern          | `cc4_world`, `cc4_wealthUS`, `cc4_poorUS`, `cc4_comm`, `cc4_famheal`, `cc4_famecon`    |
