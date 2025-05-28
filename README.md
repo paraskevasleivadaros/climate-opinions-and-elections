@@ -1,90 +1,94 @@
-# 🗳️ Elections and Climate Attitudes  
-**How Do People’s Views on Climate Change and Policies Shift During an Election?**  
-By Paraskevas K. Leivadaros  
-Supervised by Kyuri Park  
-University of Amsterdam | MSc in Data Science (2025)
-
-## 📘 Overview
-This repository contains the code and data analysis for my master's thesis, which investigates how the 2020 U.S. elections influenced public perceptions of climate change, policy support, and financial willingness to act.
-
-The analysis uses a combination of **causal discovery (PC algorithm)** and **dynamic modeling (VAR and GVAR)** to uncover how climate attitudes evolve over time and are shaped by political affiliation and ideological positioning.
+# 🗳️ Climate Opinions and Elections
+This repository contains the code and materials for the master's thesis *"Elections and Climate Attitudes: How Do People’s Views on Climate Change and Policies Shift During an Election?"* by Paraskevas K. Leivadaros, supervised by Kyuri Park at the University of Amsterdam (MSc in Data Science, 2025). The thesis examines how public perceptions of climate change, willingness to pay, and support for climate policies shift during election periods, using survey data and temporal analysis methods.
 
 ## 📌 Research Questions
-1. How do attitudes toward carbon taxes or emissions standards shift around election periods?
-2. Does willingness to pay for climate solutions change during electoral cycles?
-3. Do perceived harms (e.g., to family or community) drive support for climate policies?
-4. How do political identity and ideology moderate climate-related attitudes?
+1. Does support for climate policies (like carbon taxes or emissions standards) change during elections? And is this support influenced by personal or community-level perceptions of climate harm?
+2. Does willingness to pay for climate solutions vary during elections and what factors influence it?
+3. Does political ideology moderate the relationship between perceptions of harm and willingness to pay?  
 
 ## 📊 Dataset Summary
-- 📈 **Observations**: 4,520  
-- 📊 **Variables**: 11 numeric (8 float64, 3 int64), standardized to 1–5 Likert scales  
-- 📅 **Time Range**: 2020–2021 (Waves 2–4, centered on U.S. election)
+- 📈 **Observations**: 5,667  
+- 📊 **Variables**: 20 numeric (11 float64, 9 int64)
+- 📅 **Time Range**: 2020–2021 (Waves 2,3 and 4, centered on U.S. election)
 
 ### Key Dimensions
-| Dimension                    | Variables                                                |
-|-----------------------------|----------------------------------------------------------|
-| Climate concern             | `cc4_world`, `cc4_comm`, `cc4_famheal`, `cc4_famecon`... |
-| Willingness to pay (WTP)    | `ccSolve` (scaled & merged from ccSolveX variables)      |
-| Policy support              | `cc_pol_tax`, `cc_pol_car`                               |
-| Political orientation       | `pol_party`, `pol_ideology`                              |
-
-- Variables initially varied in scale (1–4, 1–3, 1–5) and were harmonized to a 1–5 Likert scale.
-- The `ccSolve` variable was created by dollar-weighting and normalizing responses from a randomized cost-assigned policy question.
-- ~80% of original `ccSolveX` variables had missing values by design; merged approach eliminates that issue.
+| Dimension                | Variables                                                                              |
+|--------------------------|----------------------------------------------------------------------------------------|
+| Climate concern          | `cc4_world`, `cc4_wealthUS`, `cc4_poorUS`, `cc4_comm`, `cc4_famheal`, `cc4_famecon`    |
+| Willingness to pay (WTP) | `ccSolve100`, `ccSolve50`, `ccSolve10`, `ccSolve1`, `ccSolve0` (merged into `ccSolve`) |
+| Policy support           | `cc_pol_tax`, `cc_pol_car`                                                             |
+| Political orientation    | `pol_party`, `pol_lean`, `pol_ideology`                                                |
+| Demographics             | `dem_income`, `dem_male`, `dem_age`, `dem_educ`                                        |
 
 ## 🔍 Exploratory Data Analysis (EDA)
 ### Key Insights
-- **Climate concern** is higher at the global/community level than at the personal or economic level.
-- **Support for policy** (especially `cc_pol_car`) is consistently higher than **WTP**, which is lowest when high costs are introduced.
-- **Political identity and ideology** strongly correlate with support for policies, more than with general climate concern.
-- **PCA & ICA** suggest three major latent dimensions:
+* **Global and community-level concern** about climate change is consistently higher than personal or economic concerns.
+* **Support for policies**, particularly emissions standards (`cc_pol_car`), remains high across waves, while **willingness to pay (WTP)** drops when financial costs increase.
+* **Political identity** strongly predicts policy support, but is weakly correlated with general concern.
+* **Dimensionality reduction (PCA, ICA, Factor Analysis)** highlights three core constructs:
   1. Climate impact perception
   2. Willingness to pay
   3. Political/policy alignment
 
-👉 See [`notebooks/eda.ipynb`](notebooks/eda.ipynb) for full visualizations:  
-- Histograms & KDE plots  
-- Spearman correlation heatmaps  
-- PCA, ICA, Factor Analysis  
+👉 Full visualizations are available in [`notebooks/1-eda.ipynb`](notebooks/eda.ipynb), including:
+* KDE plots and histograms
+* Correlation heatmaps (Spearman)
+* Dimensionality reduction results (PCA, ICA, Factor Analysis)
 
 ## ⚙️ Methodology
-### 1. Causal Discovery
-- **PC Algorithm** (constraint-based DAG learning)
-- Guides selection and ordering of variables for time series modeling
+### 1. Time Series Modeling
+* **Panel VAR (PVAR)** is used to model temporal dynamics of climate perceptions, policy support, and WTP.
+* Election-period effects are evaluated via **subgroup comparisons** and time-aligned estimations.
 
-### 2. Time Series Modeling
-- **VAR (Vector Autoregression)**: Captures lagged interdependencies across time
-- **GVAR (Graphical VAR)**: Adds regularization using learned causal graph
-- **Event Split**: Observations segmented pre- and post-2020 U.S. Election for comparative modeling
+### 2. Causal Discovery
+* **PCMCI+ algorithm** from `tigramite` identifies time-lagged causal relationships among variables.
+* Results from PVAR and PCMCI+ are compared to validate robustness of causal inferences.
+
+### 3. Moderation Models
+* Interaction effects between **harm perception** and **political ideology** are tested to identify conditional influences on WTP and policy attitudes.
+* Multicollinearity is addressed using a **composite harm index**.
 
 ## 📁 Project Structure
 ```
 📁 data/
-    └── 4-cleaned_data.csv               # Final dataset (standardized & imputed)
+📁 docs/
+    ├── paraskevas-leivadaros-master-thesis.pdf
 📁 notebooks/
-    ├── eda.ipynb                        # Exploratory data analysis
+    ├── 1-eda.ipynb                             # Exploratory data analysis
+    ├── 2-modeling-and-inference.ipynb          # Time Series and Causal Analysis
+📁 results/
+📁 scripts/
+📜 LICENSE
 📄 README.md
 📄 requirements.txt
+📟 setup.py
 ```
 
 ## 📦 Installation
 ```bash
-git clone https://github.com/paraskevasleivadaros/climate-opinions-shift-elections-policies.git
-cd climate-opinions-shift-elections-policies
-pip install -r requirements.txt
+git clone https://github.com/paraskevasleivadaros/climate-opinions-and-elections.git
+cd climate-opinions-and-elections
+pip install .
 ```
 
-## 📈 Preliminary Findings
-- Election timing appears to *moderate* attitudes, particularly among independents.
-- Climate concern and support for emission regulations remain relatively high, but **WTP remains low**, especially among conservative-leaning respondents.
-- **VAR and GVAR results pending** — will be updated soon.
+## 📈 Main Findings
+* **Election periods do not significantly alter general climate attitudes**, but subtle shifts in **WTP and policy support** occur among independents.
+* **Support for carbon taxes** is strongly predicted by previous policy support (e.g., emissions standards).
+* **Multicollinearity in interaction models** affects precision, prompting dimensionality reduction through index construction.
 
 ## 🧠 Tools and Libraries
-- `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`
-- `networkx` (PC algorithm)
-- `statsmodels` (VAR)
-- `graphicalvar`, `factor_analyzer`
-- `skimpy`, `FastICA`
+| Tool/Library  | Purpose                                            |
+| --------------| ---------------------------------------------------|
+| `pandas`      | Data manipulation and panel structuring            |
+| `numpy`       | Numerical operations and array handling            |
+| `statsmodels` | PVAR (Panel Vector Autoregression) estimation      |
+| `tigramite`   | Time-lagged causal discovery using PCMCI+          |
+| `matplotlib`  | Static plotting                                    |
+| `seaborn`     | Statistical graphics for exploratory data analysis |
+| `plotly`      | Interactive network visualizations                 |
+| `networkx`    | Construction and layout of causal graphs           |
+| `graphviz`    | Rendering directed acyclic graphs (DAGs)           |
+| `skimpy`      | Quick summaries and data diagnostics               |
 
 ## 📜 License
 [GPL-3.0 license](/LICENSE)
@@ -97,4 +101,8 @@ pip install -r requirements.txt
 ## 📬 Contact
 **Paraskevas K. Leivadaros**  
 📧 [paraskevasleivadaros@gmail.com](mailto:paraskevasleivadaros@gmail.com)  
-🌐 [GitHub](https://github.com/paraskevasleivadaros) | [LinkedIn](https://www.linkedin.com/in/paraskevasleivadaros)
+🌐 [GitHub](https://github.com/paraskevasleivadaros) | [LinkedIn](https://linkedin.com/in/paraskevasleivadaros)
+
+## 📚 Citation
+If you use this repository, please cite the thesis:
+> Paraskevas K. Leivadaros, *Elections and Climate Attitudes: How Do People’s Views on Climate Change and Policies Shift During an Election?*, University of Amsterdam, 2025. [PDF](docs/paraskevas-leivadaros-master-thesis.pdf)
