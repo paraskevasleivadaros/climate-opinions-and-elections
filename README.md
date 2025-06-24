@@ -65,11 +65,92 @@ This repository contains the code and materials for the master's thesis *"Electi
 ```
 
 ## 📦 Installation
+This project requires **Python 3.13.0** and **pip 25.1.1**. To avoid conflicts with system-wide packages, we recommend installing Python via a package manager (like Homebrew) and using a virtual environment.
+### 🔧 Step 0: Install Python 3.13.0 and pip 25.1.1
+#### 🐍 Option A: Using Homebrew (macOS/Linux)
+If you don’t have Homebrew installed, run:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Then install Python 3.13.0:
+```bash
+brew install python@3.13
+```
+
+Add it to your shell (if needed):
+```bash
+echo 'export PATH="/opt/homebrew/opt/python@3.13/bin:$PATH"' >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+Upgrade `pip`:
+```bash
+python3 -m pip install --upgrade pip
+```
+
+#### 🪟 Option B: On Windows
+1. Download Python 3.13.0 from the official website:  
+   https://www.python.org/downloads/release/python-3130/
+
+2. During installation:
+   - ✅ Check “Add Python to PATH”
+   - ✅ Enable `pip` in the installer options
+
+3. After installation, confirm with:
+   ```bash
+   python --version
+   pip --version
+   ```
+
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/paraskevasleivadaros/climate-opinions-and-elections.git
 cd climate-opinions-and-elections
+```
+
+### 2. Create a Virtual Environment
+```bash
+python3 -m venv venv
+```
+
+### 3. Activate the Virtual Environment
+- **macOS/Linux:**
+  ```bash
+  source venv/bin/activate
+  ```
+
+- **Windows (Command Prompt):**
+  ```cmd
+  venv\Scripts\activate
+  ```
+
+- **Windows (PowerShell):**
+  ```powershell
+  .\venv\Scripts\Activate.ps1
+  ```
+
+### 4. Verify the Python Environment
+```bash
+which python
+```
+Expected output (macOS/Linux):
+```
+/Users/yourname/climate-opinions-and-elections/venv/bin/python
+```
+
+### 5. Install the Project Package and Dependencies
+```bash
 pip install .
 ```
+
+This installs all dependencies from `setup.py`
+
+📚 For more help:
+- Python: https://www.python.org/
+- pip: https://pip.pypa.io/en/stable/installation/
+- Homebrew: https://brew.sh/
+
 
 ## 📈 Main Findings
 * **Election periods do not significantly alter general climate attitudes**, but subtle shifts in **WTP and policy support** occur among independents.
