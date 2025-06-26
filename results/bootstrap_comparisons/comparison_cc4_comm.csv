@@ -1,0 +1,17 @@
+Variable,Model p-value,Bootstrap significant?,Notes
+const,0.0007,Yes,Agreement
+cc4_world_lag,0.002,Yes,Agreement
+cc4_wealthUS_lag,0.3777,No,Agreement
+cc4_poorUS_lag,0.4075,No,Agreement
+cc4_comm_lag,0.0,Yes,Agreement
+cc4_famheal_lag,0.004,Yes,Agreement
+cc4_famecon_lag,0.3456,No,Agreement
+ccSolve_lag,0.1687,No,Agreement
+cc_pol_tax_lag,0.0888,No,Agreement
+cc_pol_car_lag,0.0051,Yes,Agreement
+pol_score_lag,0.0044,Yes,Agreement
+pol_ideology_lag,0.0193,Yes,Agreement
+dem_income,0.0306,Yes,Agreement
+dem_age,0.8168,No,Agreement
+dem_educ,0.8303,No,Agreement
+dem_male,0.8842,No,Agreement
